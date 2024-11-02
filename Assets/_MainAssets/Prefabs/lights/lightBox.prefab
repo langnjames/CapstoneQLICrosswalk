@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 509562701411620613}
   m_Layer: 0
   m_Name: lightGreen
-  m_TagString: Untagged
+  m_TagString: GREENLIGHT
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 1731498095555061820}
   m_Layer: 0
   m_Name: lightBox
-  m_TagString: Untagged
+  m_TagString: STOPLIGHT
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 2447513662355201385}
   m_Layer: 0
   m_Name: lightRed
-  m_TagString: Untagged
+  m_TagString: REDLIGHT
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

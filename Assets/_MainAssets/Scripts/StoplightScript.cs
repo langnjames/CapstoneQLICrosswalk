@@ -6,6 +6,7 @@ using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.InputSystem.XR.Haptics;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class StoplightScript : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class StoplightScript : MonoBehaviour
     private GameObject[] yellowlights;
     private GameObject[] crosswalks;
 
-    private float lightSwapDuration = 2f;
+    private float lightSwapDuration = 14f;
     private bool isRedActive = true;
 
     private Stoplight lights = new Stoplight();
@@ -24,6 +25,12 @@ public class StoplightScript : MonoBehaviour
     public Material dimGreenMat;
     public Material activeRedMat;
     public Material dimRedMat;
+    public Material activeYellowMat;
+    public Material dimYellowMat;
+
+    private float greenDuration = 10f;
+    private float yellowDuration = 3f;
+    private float redDuration = 7f;
 
 
 
@@ -36,7 +43,7 @@ public class StoplightScript : MonoBehaviour
         stoplights = GameObject.FindGameObjectsWithTag("STOPLIGHT");
         crosswalks = GameObject.FindGameObjectsWithTag("CROSSWALK");
 
-        Stoplight.SetMaterials(activeGreenMat, dimGreenMat, activeRedMat, dimRedMat);
+        Stoplight.SetMaterials(activeGreenMat, dimGreenMat, activeRedMat, dimRedMat, activeYellowMat, dimYellowMat);
        
 
         for (int i = 0; i < stoplights.Length; i++)
@@ -49,41 +56,9 @@ public class StoplightScript : MonoBehaviour
             stoplightDict.Add(i, lightObj);
         }
 
-        
+
         StartCoroutine(SwapLights());
     }
-
-    // Update is called once per frame
-    void LightSwap()
-    {
-        
-
-        //SetLights(lights.redLight, lights.greenLight, isRedActive);
-
-    }
-
-    void PairStoplights(GameObject[] stoplights)
-    {
-        foreach (GameObject stoplight in stoplights)
-        {
-
-        }
-    }
-
-    //void SetGreenLight(GameObject stoplight, bool active)
-    //{ 
-    //    stoplight.GetComponent<MeshRenderer>().material = active ? greenLightMatDim : greenLightMatActive;
-    //}
-
-    //void SetYellowLight(GameObject stoplight)
-    //{
-    //    stoplight.GetComponent <Material>().color = Color.yellow;
-    //}
-
-    //void SetRedLight(GameObject stoplight, bool active)
-    //{
-    //    stoplight.GetComponent<MeshRenderer>().material = active ? redLightMatDim : redLightMatActive;
-    //}
 
     void SetLights()
     {
@@ -93,11 +68,12 @@ public class StoplightScript : MonoBehaviour
             {
                 if (stoplight.direction == "N" || stoplight.direction == "S")
                 {
-                    stoplight.ActivateGo();
+                    Debug.Log("Got here");
+                    StartTrafficCycle(stoplight);
                 }
                 else if (stoplight.direction == "E" || stoplight.direction == "W")
                 {
-                    stoplight.ActivateStop();
+                    //stoplight.ActivateStop();
                 }
             }
             NSActive = false;
@@ -108,11 +84,12 @@ public class StoplightScript : MonoBehaviour
             {
                 if (stoplight.direction == "N" || stoplight.direction == "S")
                 {
-                    stoplight.ActivateStop();
+                    //stoplight.ActivateStop();
                 }
                 else if (stoplight.direction == "E" || stoplight.direction == "W")
                 {
-                    stoplight.ActivateGo();
+                    StartTrafficCycle(stoplight);
+                    Debug.Log("Got there");
 
                 }
             }
@@ -120,6 +97,21 @@ public class StoplightScript : MonoBehaviour
         }
 
         SetCrosswalkSign(crosswalks);
+    }
+
+    public void ActivateGo(Stoplight stoplight)
+    {
+        stoplight.ActivateGo();
+    }
+
+    public void ActivateYield(Stoplight stoplight)
+    {
+        stoplight.ActivateYield();
+    }
+
+    public void ActivateStop(Stoplight stoplight)
+    {
+        stoplight.ActivateStop();
     }
 
     void SetCrosswalkSign(GameObject[] crosswalks)
@@ -214,6 +206,23 @@ public class StoplightScript : MonoBehaviour
     }
 
 
+    public void StartTrafficCycle(Stoplight stoplight)
+    {
+        StartCoroutine(CycleLights(stoplight));
+    }
+
+    private IEnumerator CycleLights(Stoplight stoplight)
+    {
+            ActivateGo(stoplight);
+            yield return new WaitForSeconds(greenDuration);
+            ActivateYield(stoplight);
+            yield return new WaitForSeconds(yellowDuration);
+            ActivateStop(stoplight);
+            yield return new WaitForSeconds(redDuration);
+        
+    }
+
+
     private IEnumerator SwapLights()
     {
         while (true)
@@ -222,7 +231,9 @@ public class StoplightScript : MonoBehaviour
             //Debug.Log("Swapped");
             yield return new WaitForSeconds(lightSwapDuration);
         }
-        
+
     }
 
 }
+
+

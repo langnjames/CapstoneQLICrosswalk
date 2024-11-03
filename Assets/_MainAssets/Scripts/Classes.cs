@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 
@@ -46,19 +47,22 @@ public class Stoplight
 {
     public string direction;
     public GameObject stoplight;
-    public  GameObject greenLight;
-    public  GameObject yellowLight;
-    public  GameObject redLight;
+    public GameObject greenLight;
+    public GameObject yellowLight;
+    public GameObject redLight;
 
     // Materials (These can be static if shared among all stoplights)
     public static Material activeGreenMat;
     public static Material dimGreenMat;
     public static Material activeRedMat;
     public static Material dimRedMat;
+    public static Material activeYellowMat;
+    public static Material dimYellowMat;
 
-    public void SetStopLight(GameObject stoplight, string direction) 
+
+    public void SetStopLight(GameObject stoplight, string direction)
     {
-        if(stoplight != null) 
+        if (stoplight != null)
         {
             this.stoplight = stoplight;
             greenLight = stoplight.transform.Find("lightGreen").gameObject;
@@ -81,29 +85,33 @@ public class Stoplight
         this.direction = direction;
     }
 
-    public static void SetMaterials(Material activeGreen, Material dimGreen, Material activeRed, Material dimRed)
+    public static void SetMaterials(Material activeGreen, Material dimGreen, Material activeRed, Material dimRed, Material activeYellow, Material dimYellow)
     {
         activeGreenMat = activeGreen;
         dimGreenMat = dimGreen;
         activeRedMat = activeRed;
         dimRedMat = dimRed;
+        activeYellowMat = activeYellow;
+        dimYellowMat = dimYellow;
     }
 
     public void ActivateGo()
     {
         this.greenLight.GetComponent<MeshRenderer>().material = activeGreenMat;
         this.redLight.GetComponent<MeshRenderer>().material = dimRedMat;
-        
-        //Set Walkbox to walk sign
+    }
+
+
+    public void ActivateYield()
+    {
+        this.greenLight.GetComponent<MeshRenderer>().material = dimGreenMat;
+        this.yellowLight.GetComponent<MeshRenderer>().material = activeYellowMat;
     }
 
     public void ActivateStop()
     {
-        this.greenLight.GetComponent<MeshRenderer>().material = dimGreenMat;
+        this.yellowLight.GetComponent<MeshRenderer>().material = dimYellowMat;
         this.redLight.GetComponent<MeshRenderer>().material = activeRedMat;
-
-        // Set Walkbox to Stop hand
-
     }
 
     public static bool IsGreen(Stoplight stoplight)
@@ -116,7 +124,7 @@ public class Stoplight
 
     public static string GetState(Stoplight stoplight)
     {
-        if (stoplight.direction == "N" ||  stoplight.direction == "S")
+        if (stoplight.direction == "N" || stoplight.direction == "S")
         {
             if (IsGreen(stoplight))
             {
@@ -137,38 +145,7 @@ public class Stoplight
             {
                 return "NS";
             }
-            
+
         }
     }
-
-    //public static bool IsNSActive(Stoplight stoplight)
-    //{
-    //    bool active = false;
-    //    bool lightActive = stoplight.greenLight.GetComponent<MeshRenderer>().material == activeGreenMat;
-    //    bool lightInactive = stoplight.greenLight.GetComponent<MeshRenderer>().material == dimGreenMat;
-
-    //    if (lightActive)
-    //    {
-    //        if (stoplight.direction == "N" || stoplight.direction == "S")
-    //        {
-    //            return true;
-    //        }
-    //        else
-    //        {
-    //            active =  false;
-    //        }
-    //    }
-    //    else if (lightInactive) 
-    //    {
-    //        if (stoplight.direction == "E" || stoplight.direction == "W")
-    //        {
-    //            active =  true;
-    //        }
-    //        else
-    //        {
-    //            active = false;
-    //        }
-    //    }
-    //    return active;
-    //}
 }

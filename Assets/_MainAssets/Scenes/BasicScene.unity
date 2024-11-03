@@ -720,6 +720,8 @@ MonoBehaviour:
   dimGreenMat: {fileID: 2100000, guid: 3c3344fdbd27d3f41b5613b6a9e29016, type: 2}
   activeRedMat: {fileID: 2100000, guid: c998ba11827a44642afaf0874084be01, type: 2}
   dimRedMat: {fileID: 2100000, guid: 7cd97b80c89684c46bcd0ce489b2e5c0, type: 2}
+  activeYellowMat: {fileID: 2100000, guid: 50389ab2d648aa14fa7d99579b616ab5, type: 2}
+  dimYellowMat: {fileID: 2100000, guid: 1316a93c9b3256e409d47bf2548af97a, type: 2}
 --- !u!4 &245359333
 Transform:
   m_ObjectHideFlags: 0

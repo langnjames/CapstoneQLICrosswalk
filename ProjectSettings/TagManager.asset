@@ -10,8 +10,7 @@ TagManager:
   - GREENLIGHT
   - REDLIGHT
   - YELLOWLIGHT
-  - Light_NS
-  - Light_EW
+  - CROSSWALK
   layers:
   - Default
   - TransparentFX

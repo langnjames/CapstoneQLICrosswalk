@@ -716,11 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29cf994d9c7db9c4793e4b5a09c31696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redLightMatActive: {fileID: 2100000, guid: 7360d7d30d69c6f4487485ccbe3a8d7c, type: 2}
-  redLightMatDim: {fileID: 2100000, guid: ebf13d1932714c040a75a436212ec41f, type: 2}
-  greenLightMatActive: {fileID: 2100000, guid: 75f2e0f3f55fa5646957f98e092a0e9e, type: 2}
-  greenLightMatDim: {fileID: 2100000, guid: 15ebf43d2fd4ef64f81bcf4b22f6db82, type: 2}
-  activeGreenMat: {fileID: 2100000, guid: c998ba11827a44642afaf0874084be01, type: 2}
+  activeGreenMat: {fileID: 2100000, guid: fbeead6f9202bac4da4a10e963cc7879, type: 2}
   dimGreenMat: {fileID: 2100000, guid: 3c3344fdbd27d3f41b5613b6a9e29016, type: 2}
   activeRedMat: {fileID: 2100000, guid: c998ba11827a44642afaf0874084be01, type: 2}
   dimRedMat: {fileID: 2100000, guid: 7cd97b80c89684c46bcd0ce489b2e5c0, type: 2}
@@ -7749,6 +7745,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: STOPLIGHT
       objectReference: {fileID: 0}
+    - target: {fileID: 8684509089011513535, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: a012a17ab4af8a144985fbb31a712e5e, type: 2}
     - target: {fileID: 8958956189350404869, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
       propertyPath: m_TagString
       value: STOPLIGHT

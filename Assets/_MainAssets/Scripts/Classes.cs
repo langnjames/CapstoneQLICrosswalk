@@ -105,4 +105,70 @@ public class Stoplight
         // Set Walkbox to Stop hand
 
     }
+
+    public static bool IsGreen(Stoplight stoplight)
+    {
+        Material currentMaterial = stoplight.greenLight.GetComponent<MeshRenderer>().material;
+        string materialName = currentMaterial.name.Replace(" (Instance)", "");
+        return materialName == activeGreenMat.name;
+    }
+
+
+    public static string GetState(Stoplight stoplight)
+    {
+        if (stoplight.direction == "N" ||  stoplight.direction == "S")
+        {
+            if (IsGreen(stoplight))
+            {
+                return "NS";
+            }
+            else
+            {
+                return "EW";
+            }
+        }
+        else // direction is EW
+        {
+            if (IsGreen(stoplight))
+            {
+                return "EW";
+            }
+            else
+            {
+                return "NS";
+            }
+            
+        }
+    }
+
+    //public static bool IsNSActive(Stoplight stoplight)
+    //{
+    //    bool active = false;
+    //    bool lightActive = stoplight.greenLight.GetComponent<MeshRenderer>().material == activeGreenMat;
+    //    bool lightInactive = stoplight.greenLight.GetComponent<MeshRenderer>().material == dimGreenMat;
+
+    //    if (lightActive)
+    //    {
+    //        if (stoplight.direction == "N" || stoplight.direction == "S")
+    //        {
+    //            return true;
+    //        }
+    //        else
+    //        {
+    //            active =  false;
+    //        }
+    //    }
+    //    else if (lightInactive) 
+    //    {
+    //        if (stoplight.direction == "E" || stoplight.direction == "W")
+    //        {
+    //            active =  true;
+    //        }
+    //        else
+    //        {
+    //            active = false;
+    //        }
+    //    }
+    //    return active;
+    //}
 }

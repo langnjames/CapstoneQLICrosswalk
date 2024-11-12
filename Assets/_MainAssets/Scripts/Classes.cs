@@ -10,8 +10,54 @@ public class Classes
     
 }
 
-public class Car
+public class CarClass
 {
+
+    public string DetermineOrientation(GameObject car)
+    {
+        string direction = "NA";
+
+        // Get the Y rotation in degrees
+        float yRotation = car.transform.eulerAngles.y;
+
+        // Normalize the angle between 0 and 360 degrees
+        yRotation = yRotation % 360f;
+
+        // Define thresholds for each cardinal direction
+        const float threshold = 45f; // Adjust as needed
+
+        if (IsAngleWithinThreshold(yRotation, 0f, threshold) || IsAngleWithinThreshold(yRotation, 360f, threshold))
+        {
+            direction = "N";
+            //Debug.Log("Light is facing North");
+        }
+        else if (IsAngleWithinThreshold(yRotation, 90f, threshold))
+        {
+            direction = "E";
+            //Debug.Log("Light is facing East");
+        }
+        else if (IsAngleWithinThreshold(yRotation, 180f, threshold))
+        {
+            direction = "S";
+            //Debug.Log("Light is facing South");
+        }
+        else if (IsAngleWithinThreshold(yRotation, 270f, threshold))
+        {
+            direction = "W";
+            //Debug.Log("Light is facing West");
+        }
+        else
+        {
+            Debug.Log("Light is at an intermediate angle");
+        }
+
+        return direction;
+    }
+
+    private bool IsAngleWithinThreshold(float angle, float targetAngle, float threshold)
+    {
+        return Mathf.Abs(Mathf.DeltaAngle(angle, targetAngle)) <= threshold;
+    }
 
     public void GetOrientation(Transform carTransform)
     {
@@ -133,6 +179,17 @@ public class Stoplight
         string materialName = currentMaterial.name.Replace(" (Instance)", "");
         return materialName == activeGreenMat.name;
     }
+
+    public static bool IsRed (Stoplight stoplight)
+    {
+        if (stoplight == null) return false;
+        else {
+            Material currentMaterial = stoplight.redLight.GetComponent<MeshRenderer>().material;
+            string materialName = currentMaterial.name.Replace(" (Instance)", "");
+            return materialName == activeRedMat.name;
+        }
+        
+    }  
 
 
     public static string GetState(Stoplight stoplight)

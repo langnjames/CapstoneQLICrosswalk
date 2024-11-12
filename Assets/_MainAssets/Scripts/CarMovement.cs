@@ -4,43 +4,101 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
-
     GameObject car;
-    public float movementSpeed = 0.5f;
-    public Car carObject = new Car();
+    public float movementSpeed = 7f;
+    public CarClass carObject = new CarClass();
+    public Stoplight stoplight;  // Reference to the StoplightScript to check the light state
+
+    private bool pastIntersection = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
         car = this.gameObject;
         Time.fixedDeltaTime = 1 / 60f;
-        Debug.Log(car.gameObject.transform.forward);
-        carObject.GetOrientation(car.transform);
+        stoplight = Component.FindAnyObjectByType<StoplightScript>().stoplightDict.GetValueOrDefault(0) ;
+
+
+        
+    }
+
+    private void OnEnable()
+    {
+        CollisionEventHandler.OnCollisionEnterEvent += SetCarFlag;
+    }
+
+    private void OnDisable()
+    {
+        CollisionEventHandler.OnCollisionEnterEvent -= SetCarFlag;
+    }
+
+    void SetCarFlag()
+    {
+        pastIntersection = true;
     }
 
     // FixedUpdate is called on a fixed interval (recommended for physics calculations)
     void FixedUpdate()
     {
-        MoveForward();
+        if (CanMoveForward())
+        {
+            MoveForward();
+        }
+        else
+        {
+            Brake();
+        }
     }
 
     void MoveForward()
     {
-        car.transform.position -= car.transform.up * movementSpeed * Time.fixedDeltaTime;
+        movementSpeed = 7f;
+        car.transform.position -= car.transform.up * movementSpeed * .01f;
     }
 
     void Brake()
     {
-        SlowDown();
+        // Optionally reduce speed smoothly or stop completely
+        movementSpeed = 0f;
     }
 
-    void SlowDown()
+    bool CanMoveForward()
     {
-        car.transform.position = car.transform.forward;
+        // Determine the car's direction using the `DetermineOrientation` method from Car class
+        string carDirection = carObject.DetermineOrientation(car);
 
-        // If the light for the direction is red: 
-        // Begin lerping the positiions of the vector3's from where the car is at to where the car should stop.
-        // I need there to be a stop point.
+        // Find the corresponding stoplight from the dictionary in StoplightScript based on the car's direction
+
+        //if (pastIntersection)
+        //{
+        //    return true;
+        //}
+
+        if (stoplight == null)
+        {
+            Debug.Log("NULL");
+        }
+        if (carDirection == "E" || carDirection == "W") // if south stoplight is green
+        {
+            if (!Stoplight.IsRed(stoplight))
+            {
+                return true;
+            }
+        }
+        if (carDirection == "N" || carDirection == "S")
+        {
+            Debug.Log("Here");
+            if(Stoplight.IsRed(stoplight))
+            {
+                return true;
+            }
+        }
+        Debug.Log("stoplight green:" + Stoplight.IsGreen(stoplight)  + "Stoplight: " + stoplight.direction+ ", cardirection: " + carDirection);
+           
+        
+
+        // Default to false if no valid light is found
+        return false;
     }
-
 }

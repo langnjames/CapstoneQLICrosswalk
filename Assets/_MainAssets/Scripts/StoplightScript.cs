@@ -35,7 +35,7 @@ public class StoplightScript : MonoBehaviour
 
 
     bool NSActive = true;
-    Dictionary<int, Stoplight> stoplightDict = new();
+    public Dictionary<int, Stoplight> stoplightDict = new();
     // Start is called before the first frame update
     void Start()
     {

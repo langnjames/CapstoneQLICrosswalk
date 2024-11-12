@@ -12,6 +12,19 @@ public class Classes
 
 public class Car
 {
+
+    public void GetOrientation(Transform carTransform)
+    {
+        if (carTransform != null)
+        {
+            var tempTrans = carTransform;
+            Debug.Log(carTransform.forward);
+            if (tempTrans.forward == Vector3.forward)
+            {
+                
+            }
+        }
+    }
     public static Vector3 GetCarPosition(Car car)
     {
         return  new Vector3(0,0,0);

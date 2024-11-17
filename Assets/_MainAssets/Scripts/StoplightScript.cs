@@ -28,23 +28,23 @@ public class StoplightScript : MonoBehaviour
     public Material activeYellowMat;
     public Material dimYellowMat;
 
-    private float greenDuration = 10f;
-    private float yellowDuration = 3f;
-    private float redDuration = 7f;
+    private float greenDuration = 4f;
+    private float yellowDuration = 1f;
+    private float redDuration = 5f;
 
 
 
     bool NSActive = true;
     public Dictionary<int, Stoplight> stoplightDict = new();
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         // Gets all stoplights in the scene
         stoplights = GameObject.FindGameObjectsWithTag("STOPLIGHT");
         crosswalks = GameObject.FindGameObjectsWithTag("CROSSWALK");
 
         Stoplight.SetMaterials(activeGreenMat, dimGreenMat, activeRedMat, dimRedMat, activeYellowMat, dimYellowMat);
-       
+
 
         for (int i = 0; i < stoplights.Length; i++)
         {
@@ -55,6 +55,11 @@ public class StoplightScript : MonoBehaviour
 
             stoplightDict.Add(i, lightObj);
         }
+    }
+
+    void Start()
+    {
+       
 
 
         StartCoroutine(SwapLights());

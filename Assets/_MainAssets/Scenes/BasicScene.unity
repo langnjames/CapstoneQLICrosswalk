@@ -1046,7 +1046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2904231676184966937, guid: c4b7453b9b1e69548936f7fd118678cc, type: 3}
       propertyPath: m_Name
-      value: Car (2)
+      value: Car S
       objectReference: {fileID: 0}
     - target: {fileID: 8624503794843502511, guid: c4b7453b9b1e69548936f7fd118678cc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2669,7 +2669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2904231676184966937, guid: c4b7453b9b1e69548936f7fd118678cc, type: 3}
       propertyPath: m_Name
-      value: Car (3)
+      value: Car W
       objectReference: {fileID: 0}
     - target: {fileID: 8624503794843502511, guid: c4b7453b9b1e69548936f7fd118678cc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8605,7 +8605,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2904231676184966937, guid: c4b7453b9b1e69548936f7fd118678cc, type: 3}
       propertyPath: m_Name
-      value: Car
+      value: Car N
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168985890822948229, guid: c4b7453b9b1e69548936f7fd118678cc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6748947613169924899, guid: c4b7453b9b1e69548936f7fd118678cc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8624503794843502511, guid: c4b7453b9b1e69548936f7fd118678cc, type: 3}
       propertyPath: m_LocalPosition.x

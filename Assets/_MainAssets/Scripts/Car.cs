@@ -6,7 +6,8 @@ using UnityEngine.UIElements;
 
 public class Car : MonoBehaviour
 {
-    private Stoplight stoplight;
+    private StoplightScript stoplights;
+    Stoplight stoplight;
     private float carRandSpeed;
     private float carCurrentSpeed = 10;
     private string carDirection;
@@ -21,7 +22,9 @@ public class Car : MonoBehaviour
         carCurrentSpeed = carRandSpeed;
 
         //Get a value of stoplight to make calls from
-        stoplight = Component.FindAnyObjectByType<StoplightScript>().stoplightDict.GetValueOrDefault(0);
+        stoplights = GameObject.Find("-- STOPLIGHTS --").GetComponent<StoplightScript>();
+        stoplight = stoplights.stoplightDict[0];
+
 
         carDirection = DetermineOrientation(this.gameObject);
     }
@@ -29,19 +32,18 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
         counter++;
-        if (StopForRed())
+        if (!StopForRed())
         {
-            SlowDown();
+            if (carCurrentSpeed < carRandSpeed)
+            {
+                SpeedUp();
+            }
+            Drive();
         }
-        //else if(counter >= 1000)
-        //{
-        //    SpeedUp();
-        //}
         else
         {
-            Drive();
+            SlowDown();
         }
     }
 
@@ -80,34 +82,40 @@ public class Car : MonoBehaviour
 
     bool StopForRed()
     {
+
         if (stoplight == null)
         {
             Debug.Log("NULL");
         }
         if (carDirection == "E" || carDirection == "W")
         {
-            if (Stoplight.IsRed(stoplight)) // SOUTH LIGHT: if south red then good to drive
+            if (Stoplight.IsRed(stoplight)) // East LIGHT: if east red then need to stop
             {
+                Debug.Log(this.gameObject.name + " needs to stop");
                 return true;
             }
-            else
+            else if (!Stoplight.IsRed(stoplight))
             {
+                Debug.Log(this.gameObject.name + " is good to drive");
                 return false;
             }
         }
-         else //if (carDirection == "N" || carDirection == "S")
+        else //if (carDirection == "N" || carDirection == "S")
         {
-            if (!Stoplight.IsRed(stoplight)) // SOUTH LIGHT: if south red then need to stop
+            Debug.Log(stoplight.direction + ", NS car");
+            if (Stoplight.IsRed(stoplight)) // East LIGHT: if east red then don't need to stop
             {
+                Debug.Log(this.gameObject.name + " is good to drive");
                 return false;
             }
-            else
+            else if (!Stoplight.IsRed(stoplight))
             {
+                Debug.Log(this.gameObject.name + " needs to stop");
                 return true;
             }
         }
 
-        
+        return false;
     }
 
 

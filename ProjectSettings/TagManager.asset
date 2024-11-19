@@ -11,6 +11,7 @@ TagManager:
   - REDLIGHT
   - YELLOWLIGHT
   - CROSSWALK
+  - StreetBarrier
   layers:
   - Default
   - TransparentFX

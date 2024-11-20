@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9012244595164191295}
   - component: {fileID: 137831740846164479}
   m_Layer: 0
-  m_Name: Car System
+  m_Name: CarSystem
   m_TagString: TrafficManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

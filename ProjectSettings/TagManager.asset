@@ -12,6 +12,11 @@ TagManager:
   - YELLOWLIGHT
   - CROSSWALK
   - StreetBarrier
+  - ObjectDestroyer
+  - SlowSpot
+  - StopSpot
+  - TrafficManager
+  - GoSpot
   layers:
   - Default
   - TransparentFX

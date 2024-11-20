@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2737185704958614439
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 962661876221649884, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_TagString
+      value: YELLOWLIGHT
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074091190500295548, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074091190500295548, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074091190500295548, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074091190500295548, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074091190500295548, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074091190500295548, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074091190500295548, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074091190500295548, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074091190500295548, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074091190500295548, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512963627149733429, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01201024
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512963627149733429, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.04375998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512963627149733429, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512963627149733429, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512963627149733429, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512963627149733429, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512963627149733429, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7482256149690056761, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      propertyPath: m_Name
+      value: crosswalkLight_street1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7482256149690056761, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7055463900216629687}
+  m_SourcePrefab: {fileID: 100100000, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+--- !u!1 &1646648775644316944 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3685771553645616823, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+  m_PrefabInstance: {fileID: 2737185704958614439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1928517878237882615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4557386841221641040, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+  m_PrefabInstance: {fileID: 2737185704958614439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2927445333444491387 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 962661876221649884, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+  m_PrefabInstance: {fileID: 2737185704958614439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4767693207189838750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7482256149690056761, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+  m_PrefabInstance: {fileID: 2737185704958614439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7055463900216629687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4767693207189838750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c7f99a6347a7846b2f59c0caa8db3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RedLightObj: {fileID: 1646648775644316944}
+  YellowLightObj: {fileID: 2927445333444491387}
+  GreenLightObj: {fileID: 6059057070934075663}
+  RedOn: {fileID: 2100000, guid: 7360d7d30d69c6f4487485ccbe3a8d7c, type: 2}
+  RedOff: {fileID: 2100000, guid: ebf13d1932714c040a75a436212ec41f, type: 2}
+  YellowOn: {fileID: 2100000, guid: 724b4ffc2b05b4141badee81a3e644c6, type: 2}
+  YellowOff: {fileID: 2100000, guid: a23e5a205317e8c4a993d0340d953ae2, type: 2}
+  GreenOn: {fileID: 2100000, guid: 75f2e0f3f55fa5646957f98e092a0e9e, type: 2}
+  GreenOff: {fileID: 2100000, guid: 15ebf43d2fd4ef64f81bcf4b22f6db82, type: 2}
+  UseWalkboxOnly: 0
+  WalkBox: {fileID: 1928517878237882615}
+  StopBox: {fileID: 4787939471755320860}
+--- !u!1 &4787939471755320860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7461974687851595195, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+  m_PrefabInstance: {fileID: 2737185704958614439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6059057070934075663 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8208504837471335080, guid: d006667284de5d54da9e2072dd9b6a03, type: 3}
+  m_PrefabInstance: {fileID: 2737185704958614439}
+  m_PrefabAsset: {fileID: 0}

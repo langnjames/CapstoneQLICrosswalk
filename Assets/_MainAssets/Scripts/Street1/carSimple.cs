@@ -18,6 +18,8 @@ public class carSimple : MonoBehaviour
     // The object to look at for instructions
     private trafficManagerSimple TrafficManager;
 
+    private bool lightStopped = false;
+
     void Start()
     {
         // Get the traffic manager object's component
@@ -30,7 +32,27 @@ public class carSimple : MonoBehaviour
     void Update()
     {
         // move forward (along Z)
-        transform.position += transform.forward * speed * .01f;   
+        DriveForward();
+        GoOnGreen();
+        
+    }
+
+    void DriveForward()
+    {
+        transform.position += transform.forward * speed * .01f;
+    }
+
+    void GoOnGreen()
+    {
+        if (TrafficManager.getStatus() == "stop")
+        {
+            lightStopped = true; 
+        }
+        else if (lightStopped && TrafficManager.getStatus() == "go")
+        {
+            lightStopped = false;
+            speed = speedSlow;
+        }
     }
 
     // Upon collision
@@ -51,5 +73,9 @@ public class carSimple : MonoBehaviour
         // SLOW if touching the SLOW spot while the go sign is disabled
 		else if(collider.gameObject.tag == "SlowSpot" && TrafficManager.getStatus() != "go")
 			speed = speedSlow;
+
+        else if(collider.gameObject.tag == "StopSpot" && TrafficManager.getStatus() != "go" && speed == speedSlow)
+            speed = speedStop;
+        
 	}
 }

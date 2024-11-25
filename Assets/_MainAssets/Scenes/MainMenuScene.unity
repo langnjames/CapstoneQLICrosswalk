@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 22013713}
   - component: {fileID: 22013715}
   - component: {fileID: 22013714}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ExitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 76476907}
   - component: {fileID: 76476909}
   - component: {fileID: 76476908}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ExitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 88852858}
   - component: {fileID: 88852860}
   - component: {fileID: 88852859}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MainMenuLabel
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 98603988}
   - component: {fileID: 98603990}
   - component: {fileID: 98603989}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MainMenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 119595382}
   - component: {fileID: 119595381}
   - component: {fileID: 119595380}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TimerLeftButton
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 208934010}
   - component: {fileID: 208934012}
   - component: {fileID: 208934011}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: StartGameButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 210831361}
   - component: {fileID: 210831363}
   - component: {fileID: 210831362}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelLabel
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 275690533}
   - component: {fileID: 275690535}
   - component: {fileID: 275690534}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ExitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1163,7 +1163,7 @@ GameObject:
   - component: {fileID: 336219774}
   - component: {fileID: 336219773}
   - component: {fileID: 336219772}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: StartGameButton
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -1307,7 +1307,7 @@ GameObject:
   - component: {fileID: 397542819}
   - component: {fileID: 397542821}
   - component: {fileID: 397542820}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TimerSelectLabel
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -1441,7 +1441,7 @@ GameObject:
   - component: {fileID: 671173161}
   - component: {fileID: 671173163}
   - component: {fileID: 671173162}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ExitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1576,7 +1576,7 @@ GameObject:
   - component: {fileID: 849546013}
   - component: {fileID: 849546012}
   - component: {fileID: 849546011}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TrafficRightButton
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -1697,67 +1697,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849546009}
   m_CullTransparentMesh: 1
---- !u!1001 &860885122
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187027, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_Name
-      value: XR Device Simulator
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
 --- !u!1 &881317043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1769,7 +1708,7 @@ GameObject:
   - component: {fileID: 881317044}
   - component: {fileID: 881317046}
   - component: {fileID: 881317045}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ExitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1903,7 +1842,7 @@ GameObject:
   - component: {fileID: 901794105}
   - component: {fileID: 901794107}
   - component: {fileID: 901794106}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TrafficSelectLabel
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -2039,7 +1978,7 @@ GameObject:
   - component: {fileID: 921967027}
   - component: {fileID: 921967030}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: PCCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2174,7 +2113,7 @@ GameObject:
   - component: {fileID: 1069169291}
   - component: {fileID: 1069169293}
   - component: {fileID: 1069169292}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ExitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2308,7 +2247,7 @@ GameObject:
   - component: {fileID: 1111125336}
   - component: {fileID: 1111125338}
   - component: {fileID: 1111125337}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ExitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2443,7 +2382,7 @@ GameObject:
   - component: {fileID: 1207266314}
   - component: {fileID: 1207266313}
   - component: {fileID: 1207266312}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TimerRightButton
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -2575,7 +2514,7 @@ GameObject:
   - component: {fileID: 1545804206}
   - component: {fileID: 1545804208}
   - component: {fileID: 1545804207}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelSelectLabel
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -2790,7 +2729,7 @@ GameObject:
   - component: {fileID: 1703914786}
   - component: {fileID: 1703914790}
   - component: {fileID: 1703914791}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MainMenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2909,6 +2848,7 @@ MonoBehaviour:
   levelOptions:
   - Level One
   - Level Two
+  levelToSet: 
 --- !u!114 &1703914791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2936,7 +2876,7 @@ GameObject:
   - component: {fileID: 1803571524}
   - component: {fileID: 1803571523}
   - component: {fileID: 1803571522}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TimerRightButton
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -3069,7 +3009,7 @@ GameObject:
   - component: {fileID: 1860680083}
   - component: {fileID: 1860680082}
   - component: {fileID: 1860680081}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: LevelLeftButton
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -3319,7 +3259,7 @@ GameObject:
   - component: {fileID: 1886436839}
   - component: {fileID: 1886436841}
   - component: {fileID: 1886436840}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TrafficLabel
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -3454,7 +3394,7 @@ GameObject:
   - component: {fileID: 1937058289}
   - component: {fileID: 1937058288}
   - component: {fileID: 1937058287}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ExitButton
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -3586,7 +3526,7 @@ GameObject:
   - component: {fileID: 1981585420}
   - component: {fileID: 1981585422}
   - component: {fileID: 1981585421}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TimerLabel
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -3721,7 +3661,7 @@ GameObject:
   - component: {fileID: 2090303351}
   - component: {fileID: 2090303350}
   - component: {fileID: 2090303349}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TrafficLeftButton
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
@@ -3850,4 +3790,3 @@ SceneRoots:
   - {fileID: 1865612078}
   - {fileID: 1703914789}
   - {fileID: 1674383960}
-  - {fileID: 860885122}

@@ -26,19 +26,19 @@ public class lightboxControlSimple : MonoBehaviour
     public GameObject StopBox;
     
     // The object to look at for instructions
-    private trafficManagerSimple TrafficManager;
+    //private trafficManagerSimple TrafficManager;
 
     // Start is called before the first frame update
     void Start()
     {
         // Get the traffic manager object's component
-        TrafficManager = GameObject.FindWithTag("TrafficManager").GetComponent<trafficManagerSimple>(); 
+        //TrafficManager = GameObject.FindWithTag("TrafficManager").GetComponent<trafficManagerSimple>(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(TrafficManager.getStatus() == "go") //cars go
+        if(trafficManagerSimple.Instance.getStatus() == "go") //cars go
         {
             if(!UseWalkboxOnly)
             {
@@ -50,7 +50,7 @@ public class lightboxControlSimple : MonoBehaviour
             WalkBox.active = false; //walkBox
             StopBox.active = true; //stopBox 
         }
-        else if(TrafficManager.getStatus() == "slow") //cars slow
+        else if(trafficManagerSimple.Instance.getStatus() == "slow") //cars slow
         {
             if(!UseWalkboxOnly)
             {

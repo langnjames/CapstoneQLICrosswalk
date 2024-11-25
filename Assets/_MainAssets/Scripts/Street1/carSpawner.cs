@@ -37,6 +37,11 @@ public class carSpawner : MonoBehaviour
         if (TrafficManager.getStatus() == "stop")
             isEnabled = false;
 
+        if (TrafficManager.getStatus() == "go")
+        {
+            isEnabled = true;
+        }
+
         // Make a timer if there isn't one
         if (!timerCreated)
         {
@@ -78,7 +83,7 @@ public class carSpawner : MonoBehaviour
             case 2:
                 spawnInterval = 3f; break; // Normal time intervals for spawning
             case 3:
-                spawnInterval = .5f; break; // Short time intervals for spawning
+                spawnInterval = .75f; break; // Short time intervals for spawning
         }
     }
 

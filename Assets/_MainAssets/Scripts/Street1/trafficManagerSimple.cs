@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class trafficManagerSimple : MonoBehaviour
 {
+    public static trafficManagerSimple Instance { get; private set; }
+
     // 0 = STOP
     // 1 = SLOW DOWN
     // 2 = GO/DRIVE
@@ -15,11 +18,28 @@ public class trafficManagerSimple : MonoBehaviour
     // If the walk sign was triggered
     public bool walkTriggered = false;
 
+    public AudioClip buttonClickAudio;
+
 
     // if a timer was made yet
     private bool timerCreated = false;
     // the current timer value
     private float theTimer = 0f;
+    private float walkTimer = 0f;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        //SetWalkTimer();
+    }
+
+   
 
     // Update is called once per frame
     void Update()
@@ -30,6 +50,11 @@ public class trafficManagerSimple : MonoBehaviour
         if (status > 2)
             status = 2;
     
+        if (status == 0)
+        {
+            Invoke("ResetLights", MenuSettings.Instance.walkTimer - 1f);
+        }
+
         // Prepare to walk
         if (walkTriggered)
         {
@@ -47,6 +72,7 @@ public class trafficManagerSimple : MonoBehaviour
                 {
                     // subtract the time elapsed
                     theTimer -= Time.deltaTime;
+                    Debug.Log("The timer: "+ theTimer);
                 }
                 // timer complete
                 else
@@ -59,6 +85,8 @@ public class trafficManagerSimple : MonoBehaviour
                     else if(status == 1) // Change to stop state
                     {
                         status = 0;
+                        // Invoke a way to reset the timer here
+                        //Invoke("SetWalkTimer", MenuSettings.Instance.walkTimer + 1f);
                     }
                     // change to next
                 }
@@ -67,11 +95,37 @@ public class trafficManagerSimple : MonoBehaviour
         }      
     }
 
+    //public void SetWalkTimer()
+    //{
+    //    Debug.Log("Method SetWalkTimer is called");
+    //        walkTriggered = false;
+    //        timerCreated = false;
+    //        ResetTimer(); //Initalizes timer to the increment from the menu settings
+        
+    //}
+
+    public void ResetLights()
+    {
+        status = 2;
+        walkTriggered = false;
+        timerCreated= false;
+    }
+    
+
+    //public void ResetTimer()
+    //{
+    //    Debug.Log("ResetTimer is called");
+        
+    //}
+
     // Tell the light you want to walk
     public void TriggerWalk()
     {
         walkTriggered = true;
         timerCreated = false;
+        AudioSource audioSource = new();
+        audioSource.PlayOneShot(buttonClickAudio);
+        Debug.Log("Triggered Sign");
     }
 
     // Get the status of the light

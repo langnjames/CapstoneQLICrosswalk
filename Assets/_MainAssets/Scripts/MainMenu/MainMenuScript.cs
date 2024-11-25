@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.XR.Interaction.Toolkit.Transformers;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MainMenuScript : MonoBehaviour
     public string[] timerOptions = { "Unlimited", "10 Seconds", "20 Seconds", "40 Seconds", "60 Seconds", "80 Seconds", "99 Seconds" };
     public string[] trafficOptions = { "None", "Low", "Medium", "High" };
     public string[] levelOptions = { "Level One", "Level Two" };
+    public string levelToSet;
 
     public void StartGame()
     {
@@ -17,12 +19,26 @@ public class MainMenuScript : MonoBehaviour
         { 
             Destroy(menu);
         }
-        SceneManager.LoadScene("Street1");
+        LoadScene(levelToSet);
+
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void LoadScene(string scene)
+    {
+        string sceneToLoad = "Street1"; // Default value to set is scene 1
+        switch (scene) 
+        {
+            case "Level One":
+                sceneToLoad = "Street1"; break;
+            case "Level Two":
+                sceneToLoad = "Street2"; break;
+        }
+        SceneManager.LoadScene(sceneToLoad);
     }
 
     public void TimerIncrement(int direction)
@@ -67,5 +83,6 @@ public class MainMenuScript : MonoBehaviour
             newPosition = 0;
         }
         label.text = levelOptions[newPosition];
+        levelToSet = levelOptions[newPosition];
     }
 }

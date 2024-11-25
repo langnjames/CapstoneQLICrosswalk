@@ -76,6 +76,12 @@ public class carSimple : MonoBehaviour
 
         else if(collider.gameObject.tag == "StopSpot" && TrafficManager.getStatus() != "go" && speed == speedSlow)
             speed = speedStop;
+
+        else if(collider.gameObject.tag == "Player")
+        {
+            Debug.Log("Hit Player");
+            GameManager.Instance.ResetScene();
+        }
         
 	}
 }

@@ -26,6 +26,13 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void ResetScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        Debug.Log("Current Scene: " + currentScene.ToString());
+        SceneManager.LoadScene(currentScene.ToString());
+    }
+
     public void EndGame()
     {
         Debug.Log("Called game from gamemanager");

@@ -27,6 +27,7 @@ public class carSpawner : MonoBehaviour
     {
         // Get the traffic manager object's component
         TrafficManager = GameObject.FindWithTag("TrafficManager").GetComponent<trafficManagerSimple>();
+        setTimer();
     }
 
     // Update is called once per frame
@@ -59,6 +60,25 @@ public class carSpawner : MonoBehaviour
                 timerEnded();
                 timerCreated = false;
             }
+        }
+    }
+
+    //Sets the interval timing based on the menu settings
+    void setTimer()
+    {
+        int spawnRate = MenuSettings.Instance.trafficLevel;
+        Debug.Log("spawnRate:" + spawnRate);
+
+        switch (spawnRate) 
+        {
+            case 0:
+                disableSpawner(); break;
+            case 1:
+                spawnInterval = 7f; break; // Larger time intervals for spawning
+            case 2:
+                spawnInterval = 3f; break; // Normal time intervals for spawning
+            case 3:
+                spawnInterval = .5f; break; // Short time intervals for spawning
         }
     }
 

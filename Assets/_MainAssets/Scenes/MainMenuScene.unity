@@ -2976,7 +2976,7 @@ MonoBehaviour:
   - 40 Seconds
   - 60 Seconds
   - 80 Seconds
-  - 100
+  - 99 Seconds
   trafficOptions:
   - None
   - Low

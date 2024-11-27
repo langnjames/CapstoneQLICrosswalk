@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    public FadeCanvas fadeCanvas;
 
     public enum GameState
     {
@@ -28,9 +29,22 @@ public class GameManager : MonoBehaviour
 
     public void ResetScene()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        Debug.Log("Current Scene: " + currentScene.ToString());
-        SceneManager.LoadScene(currentScene.ToString());
+        fadeCanvas.StartFadeOut();
+        Invoke("CurrentSceneReset", 3f);
+    }
+
+    public void CurrentSceneReset()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+        Debug.Log("Current Scene: " + currentScene);
+        SceneManager.LoadScene(currentScene);
+    }
+
+    public void ResetScene(string message)
+    {
+        ResetScene();
+        // Send UI Panel Message and activate the panel
+
     }
 
     public void EndGame()

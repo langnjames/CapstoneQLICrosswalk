@@ -20,12 +20,16 @@ public class trafficManagerSimple : MonoBehaviour
 
     public AudioClip buttonClickAudio;
 
+    public bool walkInProgress = false;
 
     // if a timer was made yet
     private bool timerCreated = false;
     // the current timer value
     private float theTimer = 0f;
     private float walkTimer = 0f;
+    private float timeToWalk = 0f;
+
+    AudioSource audioSource;
 
     private void Awake()
     {
@@ -36,6 +40,7 @@ public class trafficManagerSimple : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        audioSource = GetComponent<AudioSource>();
         //SetWalkTimer();
     }
 
@@ -52,8 +57,20 @@ public class trafficManagerSimple : MonoBehaviour
     
         if (status == 0)
         {
-            Invoke("ResetLights", MenuSettings.Instance.walkTimer - 1f);
+            //Countdown Timer
+            walkTimer -= Time.deltaTime;
+            if (walkTimer < 0f)
+            {
+                if (walkInProgress) // If the person started the timer manually this is turned to true. 
+                {
+                    GameManager.Instance.ResetScene(); // This can be anything but I decided to end the game when person didn't complete it
+                }
+                Invoke("ResetLights", 0f);
+            }
+            
         }
+
+        Debug.Log("Weird: " + MenuSettings.Instance.walkTimer);
 
         // Prepare to walk
         if (walkTriggered)
@@ -72,7 +89,7 @@ public class trafficManagerSimple : MonoBehaviour
                 {
                     // subtract the time elapsed
                     theTimer -= Time.deltaTime;
-                    Debug.Log("The timer: "+ theTimer);
+                    //Debug.Log("The timer: "+ theTimer);
                 }
                 // timer complete
                 else
@@ -84,9 +101,11 @@ public class trafficManagerSimple : MonoBehaviour
                     }
                     else if(status == 1) // Change to stop state
                     {
+                        
+                        walkTimer = MenuSettings.Instance.walkTimer;
+                        walkInProgress = true;
                         status = 0;
-                        // Invoke a way to reset the timer here
-                        //Invoke("SetWalkTimer", MenuSettings.Instance.walkTimer + 1f);
+                        
                     }
                     // change to next
                 }
@@ -95,35 +114,21 @@ public class trafficManagerSimple : MonoBehaviour
         }      
     }
 
-    //public void SetWalkTimer()
-    //{
-    //    Debug.Log("Method SetWalkTimer is called");
-    //        walkTriggered = false;
-    //        timerCreated = false;
-    //        ResetTimer(); //Initalizes timer to the increment from the menu settings
-        
-    //}
-
     public void ResetLights()
     {
+        Debug.Log("Invoked Reset lights");
         status = 2;
         walkTriggered = false;
         timerCreated= false;
     }
-    
 
-    //public void ResetTimer()
-    //{
-    //    Debug.Log("ResetTimer is called");
-        
-    //}
 
     // Tell the light you want to walk
     public void TriggerWalk()
     {
         walkTriggered = true;
         timerCreated = false;
-        AudioSource audioSource = new();
+        
         audioSource.PlayOneShot(buttonClickAudio);
         Debug.Log("Triggered Sign");
     }

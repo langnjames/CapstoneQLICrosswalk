@@ -79,8 +79,9 @@ public class carSimple : MonoBehaviour
 
         else if(collider.gameObject.tag == "Player")
         {
-            Debug.Log("Hit Player");
-            GameManager.Instance.ResetScene();
+            // Stops the player from getting hit
+            // Currently the cars stop extremely fast
+            speed = speedStop;
         }
         
 	}

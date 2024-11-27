@@ -18,6 +18,7 @@ TagManager:
   - TrafficManager
   - GoSpot
   - MenuItem
+  - CrosswalkSpot
   layers:
   - Default
   - TransparentFX

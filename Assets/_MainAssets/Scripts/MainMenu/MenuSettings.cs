@@ -7,9 +7,9 @@ public class MenuSettings : MonoBehaviour
     public static MenuSettings Instance { get; private set; }
 
     // Settings variables
-    public int walkTimer;  //-1 will be considered disabled/infinite time, otherwise # is seconds
-    public string levelSelect; //string relating to scene name
-    public int trafficLevel; //0 is none, then range from 1-3
+    public float walkTimer = 10f;  //-1 will be considered disabled/infinite time, otherwise # is seconds
+    public string levelSelect = "Level One"; //string relating to scene name
+    public int trafficLevel = 1; //0 is none, then range from 1-3
 
     private void Awake()
     {
@@ -43,7 +43,8 @@ public class MenuSettings : MonoBehaviour
         else 
         {
             string[] parts = time.Split(' ');
-            int.TryParse(parts[0], out walkTimer);
+            //float.TryParse(parts[0], out walkTimer);
+            walkTimer = 10f;
         }
         Debug.Log("Time set to: " + walkTimer);
     }

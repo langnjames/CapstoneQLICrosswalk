@@ -63,7 +63,8 @@ public class trafficManagerSimple : MonoBehaviour
             {
                 if (walkInProgress) // If the person started the timer manually this is turned to true. 
                 {
-                    GameManager.Instance.ResetScene(); // This can be anything but I decided to end the game when person didn't complete it
+                    
+                    GameManager.Instance.ResetScene("You failed to cross the crosswalk in time"); // This can be anything but I decided to end the game when person didn't complete it
                 }
                 Invoke("ResetLights", 0f);
             }

@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public FadeCanvas fadeCanvas;
+    public GameObject player;
 
     public enum GameState
     {
@@ -24,26 +28,28 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     public void ResetScene()
     {
-        fadeCanvas.StartFadeOut();
-        Invoke("CurrentSceneReset", 3f);
+        fadeCanvas.StartFadeIn();
+        Invoke("CurrentSceneReset", 5f);
     }
 
     public void CurrentSceneReset()
     {
         string currentScene = SceneManager.GetActiveScene().name;
         Debug.Log("Current Scene: " + currentScene);
+        fadeCanvas.StartFadeOut();
         SceneManager.LoadScene(currentScene);
     }
 
     public void ResetScene(string message)
     {
         ResetScene();
-        // Send UI Panel Message and activate the panel
+        player.GetComponentInChildren<InputActionManager>().enabled = false;
+        fadeCanvas.SetText("Try Again. " + message);
 
     }
 

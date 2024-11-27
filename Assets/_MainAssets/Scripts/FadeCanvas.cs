@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -16,10 +17,13 @@ public class FadeCanvas : MonoBehaviour
     private float alpha = 0.0f;
 
     private float quickFadeDuration = 0.25f;
+    private TMP_Text messageText = null;
 
     private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        messageText = GetComponentInChildren<TMP_Text>();
+        DontDestroyOnLoad(gameObject);
     }
 
     public void StartFadeIn()
@@ -74,5 +78,10 @@ public class FadeCanvas : MonoBehaviour
     {
         alpha = value;
         canvasGroup.alpha = alpha;
+    }
+
+    public void SetText(string text)
+    {
+        messageText.text = text;
     }
 }

@@ -82,6 +82,7 @@ public class carSimple : MonoBehaviour
             // Stops the player from getting hit
             // Currently the cars stop extremely fast
             speed = speedStop;
+            GameManager.Instance.ResetScene("You almost got hit by a car");
         }
         
 	}

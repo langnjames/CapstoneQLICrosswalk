@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Rendering.Universal;
 
 public class TrafficController : MonoBehaviour
@@ -18,6 +19,7 @@ public class TrafficController : MonoBehaviour
     private int status = 0;
 
     private float walkTimer = 0;
+    private bool walkTriggered = false;
 
     // Start is called before the first frame update
     private void Awake()
@@ -35,6 +37,7 @@ public class TrafficController : MonoBehaviour
     {
         Time.fixedDeltaTime = 1 / 60f; // 60 fps update loop
         GetDirectionalLights();
+        walkTimer = MenuSettings.Instance.walkTimer;
     }
 
 
@@ -43,7 +46,7 @@ public class TrafficController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("Green Direction: " + StoplightScript.Instance.currentActiveDirection);
+        //Debug.Log("Green Direction: " + StoplightScript.Instance.currentActiveDirection);
         //Debug.Log("EW Stoplight Green: " + EWStoplight.IsGreen());
         
 
@@ -56,6 +59,29 @@ public class TrafficController : MonoBehaviour
             status = 1;
         }
 
+        if (walkTriggered)
+        {
+            FailureTimer();
+        }
+
+    }
+
+    void FailureTimer()
+    {
+        walkTimer -= Time.fixedDeltaTime;
+        if (walkTimer <= 0)
+        {
+            walkTriggered = false;
+            GameManager.Instance.ResetScene("You failed to cross the crosswalk in time"); // This can be anything but I decided to end the game when person didn't complete it
+        }
+    }
+
+
+
+    public void TriggerWalk()
+    {
+        StoplightScript.Instance.TriggerWalk();
+        walkTriggered = true;
     }
 
     private void GetDirectionalLights()

@@ -73,8 +73,8 @@ public class Car : MonoBehaviour
     // Stop the car immeadiately
     void StopCar()
     {
-        StopAllCoroutines();
         carSpeed = 0;
+        StopAllCoroutines();
     }
 
     // Will be implemented later for the car to make a turn or continue to go straight

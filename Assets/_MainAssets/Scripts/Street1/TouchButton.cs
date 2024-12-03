@@ -10,10 +10,6 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 // The TouchButton class inherits from XRBaseInteractable to handle VR/AR interactions
 public class TouchButton : XRBaseInteractable
 {
-    
-
-    public int buttonValue;
-
     // Awake is called when the script instance is being loaded
     protected override void Awake()
     {
@@ -38,6 +34,8 @@ public class TouchButton : XRBaseInteractable
         if (gameObject.name == "crosswalk Button")
         {
             trafficManagerSimple.Instance.TriggerWalk();
+            // Make a way to trigger walking across the street in the other scene
+            TrafficController.Instance.TriggerWalk();
         }
     }
 
@@ -49,6 +47,6 @@ public class TouchButton : XRBaseInteractable
         // Call the base class's OnHoverExited method
         base.OnHoverExited(args);
         // If the Renderer component and the original material are not null, change the object's material back to the original material
-        Debug.Log("Got here");
+        
     }
 }

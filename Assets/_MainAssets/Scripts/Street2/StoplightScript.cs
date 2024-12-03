@@ -76,11 +76,12 @@ public class StoplightScript : MonoBehaviour
             stoplightDict.Add(i, lightObj);
         }
 
-        lightSwapDuration = greenDuration + yellowDuration;
+        
     }
 
     void Start()
     {
+        CalculateLightCycles();
         StartCoroutine(SwapLights());
     }
 
@@ -138,6 +139,21 @@ public class StoplightScript : MonoBehaviour
     public void ActivateStop(Stoplight stoplight)
     {
         stoplight.ActivateStop();
+    }
+
+    public void TriggerWalk()
+    {
+        StopAllCoroutines();
+    }
+
+    public void CalculateLightCycles()
+    {
+        Debug.Log("walkTimer: " + MenuSettings.Instance.walkTimer);
+        float walkTimer = MenuSettings.Instance.walkTimer;
+        greenDuration = walkTimer - yellowDuration;
+        redDuration = greenDuration;
+        lightSwapDuration = greenDuration + yellowDuration;
+
     }
 
     void SetCrosswalkSign(GameObject[] crosswalks)
@@ -230,29 +246,6 @@ public class StoplightScript : MonoBehaviour
     {
         return Mathf.Abs(Mathf.DeltaAngle(angle, targetAngle)) <= threshold;
     }
-
-    //public Stoplight[] GetDirectionalLights(Stoplight[] spotlightDict)
-    //{
-    //    Stoplight[] stoplightHolder = new Stoplight[2];
-
-    //    for (int i = 0; i < spotlightDict.Length; i++)
-    //    {
-    //        if (stoplightHolder[0] != null && stoplightHolder[1] != null)
-    //        {
-    //            break;
-    //        }
-    //        else if (stoplightDict[i].GetDirection() == "NS")
-    //        {
-    //            stoplightHolder[0] = spotlightDict[i];
-    //        }
-    //        else
-    //        {
-    //            stoplightHolder[1] = spotlightDict[i];
-    //        }
-    //    }
-
-    //    return stoplightHolder;
-    //}
 
     public void StartTrafficCycle(Stoplight stoplight)
     {

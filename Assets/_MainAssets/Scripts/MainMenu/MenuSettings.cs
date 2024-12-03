@@ -43,8 +43,8 @@ public class MenuSettings : MonoBehaviour
         else 
         {
             string[] parts = time.Split(' ');
-            //float.TryParse(parts[0], out walkTimer);
-            walkTimer = 10f;
+            float.TryParse(parts[0], out walkTimer);
+            Debug.Log("walk timer supposed: " + walkTimer);
         }
         Debug.Log("Time set to: " + walkTimer);
     }

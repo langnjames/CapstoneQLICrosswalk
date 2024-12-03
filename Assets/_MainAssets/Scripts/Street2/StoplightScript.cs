@@ -16,7 +16,7 @@ public class StoplightScript : MonoBehaviour
     private GameObject[] yellowlights;
     private GameObject[] crosswalks;
 
-    private float lightSwapDuration = 14f;
+    
     private bool isRedActive = true;
 
     private Stoplight lights = new Stoplight();
@@ -28,17 +28,37 @@ public class StoplightScript : MonoBehaviour
     public Material activeYellowMat;
     public Material dimYellowMat;
 
-    private float greenDuration = 4f;
-    private float yellowDuration = 1f;
-    private float redDuration = 5f;
+    private float greenDuration = 10f;
+    private float yellowDuration = 2f;
+    private float redDuration = 10f;
+    private float lightSwapDuration; // 22f
 
 
 
-    bool NSActive = true;
+    public bool NSActive = true;
+    public bool EWActive = false;
     public Dictionary<int, Stoplight> stoplightDict = new();
+
+    public enum ActiveDirection
+    {
+        NS,
+        EW
+    }
+
+    public ActiveDirection currentActiveDirection = ActiveDirection.NS;
+
+    public static StoplightScript Instance {  get; private set; }
     // Start is called before the first frame update
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         // Gets all stoplights in the scene
         stoplights = GameObject.FindGameObjectsWithTag("STOPLIGHT");
         crosswalks = GameObject.FindGameObjectsWithTag("CROSSWALK");
@@ -55,13 +75,12 @@ public class StoplightScript : MonoBehaviour
 
             stoplightDict.Add(i, lightObj);
         }
+
+        lightSwapDuration = greenDuration + yellowDuration;
     }
 
     void Start()
     {
-       
-
-
         StartCoroutine(SwapLights());
     }
 
@@ -69,11 +88,12 @@ public class StoplightScript : MonoBehaviour
     {
         if (NSActive)
         {
+            currentActiveDirection = ActiveDirection.EW;
             foreach (Stoplight stoplight in stoplightDict.Values)
             {
                 if (stoplight.direction == "N" || stoplight.direction == "S")
                 {
-                    Debug.Log("Got here");
+                    //Debug.Log("Got here");
                     StartTrafficCycle(stoplight);
                 }
                 else if (stoplight.direction == "E" || stoplight.direction == "W")
@@ -85,6 +105,7 @@ public class StoplightScript : MonoBehaviour
         }
         else
         {
+            currentActiveDirection = ActiveDirection.NS;
             foreach (Stoplight stoplight in stoplightDict.Values)
             {
                 if (stoplight.direction == "N" || stoplight.direction == "S")
@@ -94,7 +115,7 @@ public class StoplightScript : MonoBehaviour
                 else if (stoplight.direction == "E" || stoplight.direction == "W")
                 {
                     StartTrafficCycle(stoplight);
-                    Debug.Log("Got there");
+                    
 
                 }
             }
@@ -122,14 +143,13 @@ public class StoplightScript : MonoBehaviour
     void SetCrosswalkSign(GameObject[] crosswalks)
     {
         Stoplight light = stoplightDict.GetValueOrDefault(0);
-        string lightState = Stoplight.GetState(light);
-        Debug.Log(lightState);
+        string lightState = light.GetState();
         foreach (GameObject sign in crosswalks)
         {
             string signDirection = DetermineOrientation(sign);
             GameObject walkLight = sign.transform.Find("walkLight").gameObject;
             GameObject stopLight = sign.transform.Find("stopLight").gameObject;
-            if (lightState == "NS")
+            if (currentActiveDirection == ActiveDirection.EW)
             {
                 if (signDirection == "N" || signDirection == "S")
                 {
@@ -146,7 +166,8 @@ public class StoplightScript : MonoBehaviour
                     stopLight.SetActive(true);
                 }
             }
-            else // implies EW
+             
+            if (currentActiveDirection == ActiveDirection.NS) // implies EW
             {
                 if (signDirection == "E" || signDirection == "W")
                 {
@@ -180,7 +201,7 @@ public class StoplightScript : MonoBehaviour
         if (IsAngleWithinThreshold(yRotation, 0f, threshold) || IsAngleWithinThreshold(yRotation, 360f, threshold))
         {
             direction = "N";
-            //Debug.Log("Light is facing North");
+            Debug.Log("Light is facing North");
         }
         else if (IsAngleWithinThreshold(yRotation, 90f, threshold))
         {
@@ -210,6 +231,28 @@ public class StoplightScript : MonoBehaviour
         return Mathf.Abs(Mathf.DeltaAngle(angle, targetAngle)) <= threshold;
     }
 
+    //public Stoplight[] GetDirectionalLights(Stoplight[] spotlightDict)
+    //{
+    //    Stoplight[] stoplightHolder = new Stoplight[2];
+
+    //    for (int i = 0; i < spotlightDict.Length; i++)
+    //    {
+    //        if (stoplightHolder[0] != null && stoplightHolder[1] != null)
+    //        {
+    //            break;
+    //        }
+    //        else if (stoplightDict[i].GetDirection() == "NS")
+    //        {
+    //            stoplightHolder[0] = spotlightDict[i];
+    //        }
+    //        else
+    //        {
+    //            stoplightHolder[1] = spotlightDict[i];
+    //        }
+    //    }
+
+    //    return stoplightHolder;
+    //}
 
     public void StartTrafficCycle(Stoplight stoplight)
     {
@@ -223,7 +266,7 @@ public class StoplightScript : MonoBehaviour
             ActivateYield(stoplight);
             yield return new WaitForSeconds(yellowDuration);
             ActivateStop(stoplight);
-            yield return new WaitForSeconds(redDuration);
+            //yield return new WaitForSeconds(redDuration);
         
     }
 

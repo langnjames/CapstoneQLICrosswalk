@@ -48,7 +48,7 @@ public class CarClass
         }
         else
         {
-            Debug.Log("Light is at an intermediate angle");
+            //Debug.Log("Light is at an intermediate angle");
         }
 
         return direction;
@@ -64,7 +64,7 @@ public class CarClass
         if (carTransform != null)
         {
             var tempTrans = carTransform;
-            Debug.Log(carTransform.forward);
+            //Debug.Log(carTransform.forward);
             if (tempTrans.forward == Vector3.forward)
             {
                 
@@ -110,7 +110,7 @@ public class Stoplight
     public GameObject yellowLight;
     public GameObject redLight;
 
-    // Materials (These can be static if shared among all stoplights)
+    // Materials (shared among all stoplights)
     public static Material activeGreenMat;
     public static Material dimGreenMat;
     public static Material activeRedMat;
@@ -118,30 +118,32 @@ public class Stoplight
     public static Material activeYellowMat;
     public static Material dimYellowMat;
 
-
-    public void SetStopLight(GameObject stoplight, string direction)
+    // Enum to track the current state
+    public enum LightState
     {
-        if (stoplight != null)
+        Red,
+        Yellow,
+        Green
+    }
+
+    public LightState currentState;
+
+    public void SetStopLight(GameObject stoplightObj, string dir)
+    {
+        if (stoplightObj != null)
         {
-            this.stoplight = stoplight;
+            stoplight = stoplightObj;
             greenLight = stoplight.transform.Find("lightGreen").gameObject;
             yellowLight = stoplight.transform.Find("lightYellow").gameObject;
             redLight = stoplight.transform.Find("lightRed").gameObject;
         }
-        if (direction != null)
+        if (dir != null)
         {
-            this.direction = direction;
+            direction = dir;
         }
-    }
 
-    public string GetDirection()
-    {
-        return this.direction;
-    }
-
-    public void SetDirection(string direction)
-    {
-        this.direction = direction;
+        // Initialize the stoplight to red
+        ActivateStop();
     }
 
     public static void SetMaterials(Material activeGreen, Material dimGreen, Material activeRed, Material dimRed, Material activeYellow, Material dimYellow)
@@ -154,49 +156,55 @@ public class Stoplight
         dimYellowMat = dimYellow;
     }
 
-    public void ActivateGo()
+    public string GetDirection()
     {
-        this.greenLight.GetComponent<MeshRenderer>().material = activeGreenMat;
-        this.redLight.GetComponent<MeshRenderer>().material = dimRedMat;
+        return this.direction;
     }
 
+    public void SetDirection(string direction)
+    {
+        this.direction = direction;
+    }
+
+    public void ActivateGo()
+    {
+        currentState = LightState.Green;
+        greenLight.GetComponent<MeshRenderer>().material = activeGreenMat;
+        yellowLight.GetComponent<MeshRenderer>().material = dimYellowMat;
+        redLight.GetComponent<MeshRenderer>().material = dimRedMat;
+    }
 
     public void ActivateYield()
     {
-        this.greenLight.GetComponent<MeshRenderer>().material = dimGreenMat;
-        this.yellowLight.GetComponent<MeshRenderer>().material = activeYellowMat;
+        currentState = LightState.Yellow;
+        greenLight.GetComponent<MeshRenderer>().material = dimGreenMat;
+        yellowLight.GetComponent<MeshRenderer>().material = activeYellowMat;
+        redLight.GetComponent<MeshRenderer>().material = dimRedMat;
     }
 
     public void ActivateStop()
     {
-        this.yellowLight.GetComponent<MeshRenderer>().material = dimYellowMat;
-        this.redLight.GetComponent<MeshRenderer>().material = activeRedMat;
+        currentState = LightState.Red;
+        greenLight.GetComponent<MeshRenderer>().material = dimGreenMat;
+        yellowLight.GetComponent<MeshRenderer>().material = dimYellowMat;
+        redLight.GetComponent<MeshRenderer>().material = activeRedMat;
     }
 
-    public static bool IsGreen(Stoplight stoplight)
+    public bool IsGreen()
     {
-        Material currentMaterial = stoplight.greenLight.GetComponent<MeshRenderer>().material;
-        string materialName = currentMaterial.name.Replace(" (Instance)", "");
-        return materialName == activeGreenMat.name;
+        return currentState == LightState.Green;
     }
 
-    public static bool IsRed (Stoplight stoplight)
+    public bool IsRed()
     {
-        if (stoplight == null) return false;
-        else {
-            Material currentMaterial = stoplight.redLight.GetComponent<MeshRenderer>().material;
-            string materialName = currentMaterial.name.Replace(" (Instance)", "");
-            return materialName == activeRedMat.name;
-        }
-        
-    }  
+        return currentState == LightState.Red;
+    }
 
-
-    public static string GetState(Stoplight stoplight)
+    public string GetState()
     {
-        if (stoplight.direction == "N" || stoplight.direction == "S")
+        if (direction == "N" || direction == "S")
         {
-            if (IsGreen(stoplight))
+            if (IsRed())
             {
                 return "NS";
             }
@@ -205,9 +213,9 @@ public class Stoplight
                 return "EW";
             }
         }
-        else // direction is EW
+        if (direction == "E" || direction == "W")
         {
-            if (IsGreen(stoplight))
+            if (IsRed())
             {
                 return "EW";
             }
@@ -217,5 +225,8 @@ public class Stoplight
             }
 
         }
+
+        return "";
     }
 }
+

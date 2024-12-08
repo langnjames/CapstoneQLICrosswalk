@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6168985890822948229}
   - component: {fileID: -4792629601445446251}
   - component: {fileID: 2459471154661226095}
+  - component: {fileID: 3914893924732991559}
   m_Layer: 0
   m_Name: Car
   m_TagString: CAR
@@ -178,6 +179,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &3914893924732991559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2904231676184966937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 308fd8ffdaff7bd41be36a2216b1f104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TagName: ObjectDestroyer
 --- !u!1 &5051506113242049732
 GameObject:
   m_ObjectHideFlags: 0

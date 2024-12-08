@@ -38,6 +38,8 @@ public class StoplightScript : MonoBehaviour
     public bool NSActive = true;
     public bool EWActive = false;
     public Dictionary<int, Stoplight> stoplightDict = new();
+    public List<Stoplight> NSStoplights = new List<Stoplight>();
+    public List<Stoplight> EWStoplights = new List<Stoplight>();
 
     /* SCENE DEFAULTS */
     float defaultWalkTimer = 10f;
@@ -80,7 +82,7 @@ public class StoplightScript : MonoBehaviour
             stoplightDict.Add(i, lightObj);
         }
 
-        
+        SplitLights();
     }
 
     void Start()
@@ -93,68 +95,54 @@ public class StoplightScript : MonoBehaviour
     {
         if (NSActive)
         {
+
+
+            currentActiveDirection = ActiveDirection.NS;
+            StartTrafficCycle(EWStoplights);
             
-            foreach (Stoplight stoplight in stoplightDict.Values)
-            {
-                if (stoplight.direction == "N" || stoplight.direction == "S")
-                {
-                    //Debug.Log("Got here");
-                    StartTrafficCycle(stoplight);
-                }
-                else if (stoplight.direction == "E" || stoplight.direction == "W")
-                {
-                    //stoplight.ActivateStop();
-                }
-            }
             NSActive = false;
         }
         else
         {
-            
-            foreach (Stoplight stoplight in stoplightDict.Values)
-            {
-                if (stoplight.direction == "N" || stoplight.direction == "S")
-                {
-                    //stoplight.ActivateStop();
-                }
-                else if (stoplight.direction == "E" || stoplight.direction == "W")
-                {
-                    StartTrafficCycle(stoplight);
+
+            currentActiveDirection = ActiveDirection.EW;
+            StartTrafficCycle(NSStoplights);
                     
 
-                }
-            }
+             
             NSActive = true;
         }
 
         SetCrosswalkSign(crosswalks);
     }
 
-    public void ActivateGo(Stoplight stoplight)
+    public void ActivateGo(List<Stoplight> stoplights)
     {
-        if (currentActiveDirection == ActiveDirection.NS)
+        foreach (Stoplight stoplight in stoplights)
         {
-            currentActiveDirection = ActiveDirection.EW;
+            stoplight.ActivateGo();
         }
-        else
-        {
-            currentActiveDirection = ActiveDirection.NS;
-        }
-
-        stoplight.ActivateGo();
-
         
     }
 
-    public void ActivateYield(Stoplight stoplight)
+    public void ActivateYield(List<Stoplight> stoplights)
     {
         currentActiveDirection = ActiveDirection.None;
-        stoplight.ActivateYield();
+        foreach (Stoplight stoplight in stoplights)
+        {
+            stoplight.ActivateYield();
+        }
     }
 
-    public void ActivateStop(Stoplight stoplight)
+    public void ActivateStop(List<Stoplight> stoplights)
     {
-        stoplight.ActivateStop();
+
+        
+
+        foreach (Stoplight stoplight in stoplights)
+        {
+            stoplight.ActivateStop();
+        }
     }
 
     public void TriggerWalk()
@@ -183,6 +171,26 @@ public class StoplightScript : MonoBehaviour
         redDuration = greenDuration;
         lightSwapDuration = greenDuration + yellowDuration;
 
+    }
+
+    public void SplitLights()
+    {
+        
+
+        foreach (Stoplight stoplight in stoplightDict.Values)
+        {
+            if (stoplight.direction == "N" || stoplight.direction == "S")
+            {
+                NSStoplights.Add(stoplight);
+            }
+            else if (stoplight.direction == "E" || stoplight.direction == "W")
+            {
+                EWStoplights.Add(stoplight);
+            }
+        }
+            
+        
+   
     }
 
     void SetCrosswalkSign(GameObject[] crosswalks)
@@ -276,18 +284,18 @@ public class StoplightScript : MonoBehaviour
         return Mathf.Abs(Mathf.DeltaAngle(angle, targetAngle)) <= threshold;
     }
 
-    public void StartTrafficCycle(Stoplight stoplight)
+    public void StartTrafficCycle(List<Stoplight> stoplights)
     {
-        StartCoroutine(CycleLights(stoplight));
+        StartCoroutine(CycleLights(stoplights));
     }
 
-    private IEnumerator CycleLights(Stoplight stoplight)
+    private IEnumerator CycleLights(List<Stoplight> stoplights)
     {
-            ActivateGo(stoplight);
+            ActivateGo(stoplights);
             yield return new WaitForSeconds(greenDuration);
-            ActivateYield(stoplight);
+            ActivateYield(stoplights);
             yield return new WaitForSeconds(yellowDuration);
-            ActivateStop(stoplight);
+            ActivateStop(stoplights);
             //yield return new WaitForSeconds(redDuration);
         
     }

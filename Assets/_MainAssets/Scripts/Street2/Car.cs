@@ -53,6 +53,7 @@ public class Car : MonoBehaviour
         if (!StopForRed())
         {
             carSpeed = carMaxSpeed;
+
         }
     }
 
@@ -66,6 +67,7 @@ public class Car : MonoBehaviour
     // Lerp to a speed via Coroutine
     private void SpeedUp()
     {
+        
         float lerpDuration = 3f;
         StartCoroutine(LerpCar(carMinSpeed, carMaxSpeed, lerpDuration));
     }
@@ -202,7 +204,7 @@ public class Car : MonoBehaviour
         // JUST GO if you touch a go spot
         if (collider.gameObject.tag == "GoSpot")
         {
-
+            StopAllCoroutines();
             carSpeed = carMaxSpeed;
         }
 

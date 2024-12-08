@@ -21,6 +21,9 @@ public class TrafficController : MonoBehaviour
     private float walkTimer = 0;
     private bool walkTriggered = false;
 
+    /* SCENE DEFAULTS */
+    private float defaultWalkTimer = 10f;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -37,7 +40,15 @@ public class TrafficController : MonoBehaviour
     {
         Time.fixedDeltaTime = 1 / 60f; // 60 fps update loop
         GetDirectionalLights();
-        walkTimer = MenuSettings.Instance.walkTimer;
+
+        if (MenuSettings.Instance != null)
+        {
+            walkTimer = MenuSettings.Instance.walkTimer;
+        }
+        else
+        {
+            walkTimer = defaultWalkTimer;
+        }
     }
 
 
@@ -57,6 +68,10 @@ public class TrafficController : MonoBehaviour
         else if (StoplightScript.Instance.currentActiveDirection == StoplightScript.ActiveDirection.NS)
         {
             status = 1;
+        }
+        else if(StoplightScript.Instance.currentActiveDirection == StoplightScript.ActiveDirection.None)
+        {
+            status = 2;
         }
 
         if (walkTriggered)
@@ -113,6 +128,8 @@ public class TrafficController : MonoBehaviour
                 return "NS Stop";
             case 1:
                 return "EW Stop";
+            case 2:
+                return "Yield";
         }
     }
 }

@@ -39,10 +39,14 @@ public class StoplightScript : MonoBehaviour
     public bool EWActive = false;
     public Dictionary<int, Stoplight> stoplightDict = new();
 
+    /* SCENE DEFAULTS */
+    float defaultWalkTimer = 10f;
+
     public enum ActiveDirection
     {
         NS,
-        EW
+        EW,
+        None
     }
 
     public ActiveDirection currentActiveDirection = ActiveDirection.NS;
@@ -89,7 +93,7 @@ public class StoplightScript : MonoBehaviour
     {
         if (NSActive)
         {
-            currentActiveDirection = ActiveDirection.EW;
+            
             foreach (Stoplight stoplight in stoplightDict.Values)
             {
                 if (stoplight.direction == "N" || stoplight.direction == "S")
@@ -106,7 +110,7 @@ public class StoplightScript : MonoBehaviour
         }
         else
         {
-            currentActiveDirection = ActiveDirection.NS;
+            
             foreach (Stoplight stoplight in stoplightDict.Values)
             {
                 if (stoplight.direction == "N" || stoplight.direction == "S")
@@ -128,11 +132,23 @@ public class StoplightScript : MonoBehaviour
 
     public void ActivateGo(Stoplight stoplight)
     {
+        if (currentActiveDirection == ActiveDirection.NS)
+        {
+            currentActiveDirection = ActiveDirection.EW;
+        }
+        else
+        {
+            currentActiveDirection = ActiveDirection.NS;
+        }
+
         stoplight.ActivateGo();
+
+        
     }
 
     public void ActivateYield(Stoplight stoplight)
     {
+        currentActiveDirection = ActiveDirection.None;
         stoplight.ActivateYield();
     }
 
@@ -143,13 +159,26 @@ public class StoplightScript : MonoBehaviour
 
     public void TriggerWalk()
     {
-        StopAllCoroutines();
+        StopAllCoroutines(); 
     }
 
     public void CalculateLightCycles()
     {
-        Debug.Log("walkTimer: " + MenuSettings.Instance.walkTimer);
-        float walkTimer = MenuSettings.Instance.walkTimer;
+        //Init
+        float walkTimer;
+
+        // Confirm wether Menu scene was initialized or not
+        if (MenuSettings.Instance == null)
+        {
+            walkTimer = defaultWalkTimer;
+        }
+        else
+        {
+            walkTimer = MenuSettings.Instance.walkTimer;
+        }
+
+        Debug.Log("walkTimer: " + walkTimer);
+        
         greenDuration = walkTimer - yellowDuration;
         redDuration = greenDuration;
         lightSwapDuration = greenDuration + yellowDuration;

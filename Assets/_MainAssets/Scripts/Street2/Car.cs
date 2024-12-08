@@ -103,7 +103,7 @@ public class Car : MonoBehaviour
         string TrafficStatus = TrafficController.Instance.GetStatus();
         if (carDirection == "E" || carDirection == "W")
         {
-            if (TrafficStatus == "EW Stop") // East LIGHT: if east red then need to stop
+            if (TrafficStatus == "EW Stop" || TrafficStatus == "Yield") // East LIGHT: if east red then need to stop
             {
                 //Debug.Log(this.gameObject.name + " needs to stop");
                 return true;
@@ -117,7 +117,7 @@ public class Car : MonoBehaviour
         else //if (carDirection == "N" || carDirection == "S")
         {
             //Debug.Log(stoplight.direction + ", NS car");
-            if (TrafficStatus == "NS Stop") // East LIGHT: if east red then don't need to stop
+            if (TrafficStatus == "NS Stop" || TrafficStatus == "Yield") // East LIGHT: if east red then don't need to stop
             {
                 //Debug.Log(this.gameObject.name + " is good to drive");
                 return true;
@@ -201,22 +201,18 @@ public class Car : MonoBehaviour
     {
         // JUST GO if you touch a go spot
         if (collider.gameObject.tag == "GoSpot")
+        {
+
             carSpeed = carMaxSpeed;
+        }
 
         // STOP if touching a car
         else if (collider.gameObject.tag == "CAR")
-            StopCar();
-
-        // If touching the STOP spot during a stop sign
-        else if (collider.gameObject.tag == "StopSpot")
         {
-            if (StopForRed())
-            {
-                StopCar();
-            }
+
+            StopCar();
         }
 
-        // SLOW if touching the SLOW spot while the go sign is disabled
         else if (collider.gameObject.tag == "SlowSpot")
         {
             if (StopForRed())
@@ -224,7 +220,20 @@ public class Car : MonoBehaviour
                 SlowDown();
             }
         }
-            
+
+        // If touching the STOP spot during a stop sign
+        else if (collider.gameObject.tag == "StopSpot")
+        {
+            if (StopForRed())
+            {
+
+                StopCar();
+            }
+        }
+
+        // SLOW if touching the SLOW spot while the go sign is disabled
+
+
 
 
         else if (collider.gameObject.tag == "Player")

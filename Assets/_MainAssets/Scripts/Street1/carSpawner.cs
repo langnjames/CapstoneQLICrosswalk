@@ -23,6 +23,9 @@ public class carSpawner : MonoBehaviour
     // The object to look at for instructions
     private trafficManagerSimple TrafficManager;
 
+    /* DEFAULT VALUES */
+    private int defaultTrafficLevel = 3;
+
     void Awake()
     {
         // Get the traffic manager object's component
@@ -71,7 +74,15 @@ public class carSpawner : MonoBehaviour
     //Sets the interval timing based on the menu settings
     void setTimer()
     {
-        int spawnRate = MenuSettings.Instance.trafficLevel;
+        int spawnRate;
+        if (MenuSettings.Instance != null)
+        {
+            spawnRate = MenuSettings.Instance.trafficLevel;
+        }
+        else
+        {
+            spawnRate = defaultTrafficLevel;
+        }
         Debug.Log("spawnRate:" + spawnRate);
 
         switch (spawnRate) 

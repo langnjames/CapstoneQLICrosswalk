@@ -35,7 +35,12 @@ public class TouchButton : XRBaseInteractable
         {
             trafficManagerSimple.Instance.TriggerWalk();
             // Make a way to trigger walking across the street in the other scene
-            TrafficController.Instance.TriggerWalk();
+            
+            
+            if (TrafficController.Instance != null)
+            {
+                TrafficController.Instance.TriggerWalk();
+            }
         }
     }
 

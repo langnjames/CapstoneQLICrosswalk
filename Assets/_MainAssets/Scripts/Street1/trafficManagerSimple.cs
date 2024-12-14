@@ -26,7 +26,7 @@ public class trafficManagerSimple : MonoBehaviour
     private bool timerCreated = false;
     // the current timer value
     private float theTimer = 0f;
-    private float walkTimer = 0f;
+    public float walkTimer = 0f;
     private float timeToWalk = 0f;
 
     AudioSource audioSource;
@@ -44,7 +44,10 @@ public class trafficManagerSimple : MonoBehaviour
         //SetWalkTimer();
     }
 
-   
+   public float GetTimer()
+    {
+        return walkTimer;
+    }
 
     // Update is called once per frame
     void Update()
@@ -71,7 +74,7 @@ public class trafficManagerSimple : MonoBehaviour
             
         }
 
-        Debug.Log("Weird: " + MenuSettings.Instance.walkTimer);
+        //Debug.Log("Weird: " + MenuSettings.Instance.walkTimer);
 
         // Prepare to walk
         if (walkTriggered)

@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.InputSystem.XR.Haptics;
 using UnityEngine.XR.Interaction.Toolkit;
+using TMPro;
 
 public class StoplightScript : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class StoplightScript : MonoBehaviour
     private float yellowDuration = 2f;
     private float redDuration = 10f;
     private float lightSwapDuration; // 22f
+    private float lightCountdown;
 
 
 
@@ -89,6 +91,12 @@ public class StoplightScript : MonoBehaviour
     {
         CalculateLightCycles();
         StartCoroutine(SwapLights());
+    }
+
+    void Update()
+    {
+        lightCountdown -= Time.deltaTime;
+        //Debug.Log("TIMER: " + lightCountdown);
     }
 
     void SetLights()
@@ -170,6 +178,7 @@ public class StoplightScript : MonoBehaviour
         greenDuration = walkTimer - yellowDuration;
         redDuration = greenDuration;
         lightSwapDuration = greenDuration + yellowDuration;
+        
 
     }
 
@@ -202,14 +211,18 @@ public class StoplightScript : MonoBehaviour
             string signDirection = DetermineOrientation(sign);
             GameObject walkLight = sign.transform.Find("walkLight").gameObject;
             GameObject stopLight = sign.transform.Find("stopLight").gameObject;
+            TMP_Text walkTimerText = sign.GetComponentInChildren<TMP_Text>();
+
+            Debug.Log("Value : " + walkTimerText.name);
+
             if (currentActiveDirection == ActiveDirection.EW)
             {
-                if (signDirection == "N" || signDirection == "S")
+                if (signDirection == "E" || signDirection == "W")
                 {
                     // Change mat to walk
                     walkLight.SetActive(true);
                     stopLight.SetActive(false);
-                    
+                    //walkTimerText.SetText(lightCountdown.ToString());
                 }
                 else // implies sign is 
                 {
@@ -217,26 +230,59 @@ public class StoplightScript : MonoBehaviour
 
                     walkLight.SetActive(false);
                     stopLight.SetActive(true);
+                    //walkTimerText.SetText(lightCountdown.ToString());
                 }
             }
              
             if (currentActiveDirection == ActiveDirection.NS) // implies EW
             {
-                if (signDirection == "E" || signDirection == "W")
+                if (signDirection == "N" || signDirection == "S")
                 {
                     // Change mat to walk
                     walkLight.SetActive(true);
                     stopLight.SetActive(false);
+                    walkTimerText.SetText(lightCountdown.ToString());
                 }
                 else // implies sign is 
                 {
                     // Change mat to stop
                     walkLight.SetActive(false);
                     stopLight.SetActive(true);
+                    //walkTimerText.SetText("");
                 }
             }
         }
     }
+
+    //public void CalcCrossTimer(GameObject walkTimerGO)
+    //{
+    //    TMP_Text walkTimerText = walkTimerGO.GetComponent<TMP_Text>();
+    //    float walktimer = TrafficController.Instance.GetTimer();
+
+    //    float timerVal = Mathf.Floor(walktimer);
+
+    //    int intTimer = int.Parse(timerVal.ToString());
+
+    //    if (intTimer <= 0)
+    //    {
+    //        walkTimerText.gameObject.SetActive(false);
+    //        //WalkBox.gameObject.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        walkTimerText.SetText(timerVal.ToString());
+    //        walkTimerText.gameObject.SetActive(true);
+    //        if (intTimer > 0 && intTimer <= 10)
+    //        {
+    //            //WalkBox.gameObject.SetActive(false);
+    //            //StopBox.gameObject.SetActive(true);
+    //        }
+    //        else
+    //        {
+    //            //WalkBox.gameObject.SetActive(true);
+    //        }
+    //    }
+    //}
 
     public string DetermineOrientation(GameObject light)
     {
@@ -291,12 +337,14 @@ public class StoplightScript : MonoBehaviour
 
     private IEnumerator CycleLights(List<Stoplight> stoplights)
     {
-            ActivateGo(stoplights);
-            yield return new WaitForSeconds(greenDuration);
-            ActivateYield(stoplights);
-            yield return new WaitForSeconds(yellowDuration);
-            ActivateStop(stoplights);
-            //yield return new WaitForSeconds(redDuration);
+        lightCountdown = lightSwapDuration;
+        ActivateGo(stoplights);
+        yield return new WaitForSeconds(greenDuration);
+        ActivateYield(stoplights);
+        yield return new WaitForSeconds(yellowDuration);
+        ActivateStop(stoplights);
+        
+        //yield return new WaitForSeconds(redDuration);
         
     }
 

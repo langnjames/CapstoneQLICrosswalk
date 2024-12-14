@@ -81,6 +81,11 @@ public class TrafficController : MonoBehaviour
 
     }
 
+    public float GetTimer()
+    {
+        return walkTimer;
+    }
+
     void FailureTimer()
     {
         walkTimer -= Time.fixedDeltaTime;

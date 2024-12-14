@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class lightboxControlSimple : MonoBehaviour
@@ -24,6 +27,11 @@ public class lightboxControlSimple : MonoBehaviour
     public bool UseWalkboxOnly = false;
     public GameObject WalkBox;
     public GameObject StopBox;
+    public TMP_Text walkTimerText;
+
+    // Materials to use
+    Material signMaterial;
+    Material blackMaterial;
     
     // The object to look at for instructions
     //private trafficManagerSimple TrafficManager;
@@ -33,12 +41,44 @@ public class lightboxControlSimple : MonoBehaviour
     {
         // Get the traffic manager object's component
         //TrafficManager = GameObject.FindWithTag("TrafficManager").GetComponent<trafficManagerSimple>(); 
+        if(walkTimerText == null)
+        {
+            walkTimerText.SetText("");
+        }
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(trafficManagerSimple.Instance.getStatus() == "go") //cars go
+
+        float walktimer = trafficManagerSimple.Instance.GetTimer();
+
+        float timerVal = Mathf.Floor(walktimer);
+
+        int intTimer = int.Parse(timerVal.ToString());
+
+        if (intTimer <= 0)
+        {
+            walkTimerText.gameObject.SetActive(false);
+            WalkBox.gameObject.SetActive(false);
+        }
+        else
+        {
+            walkTimerText.SetText(timerVal.ToString());
+            walkTimerText.gameObject.SetActive(true);
+            if (intTimer > 0 && intTimer <= 10)
+            {
+                WalkBox.gameObject.SetActive(false);
+                StopBox.gameObject.SetActive(true);
+            }
+            else
+            {
+               WalkBox.gameObject.SetActive(true);
+            }
+        }
+
+        if (trafficManagerSimple.Instance.getStatus() == "go") //cars go
         {
             if(!UseWalkboxOnly)
             {
@@ -46,9 +86,6 @@ public class lightboxControlSimple : MonoBehaviour
                 YellowLightObj.GetComponent<MeshRenderer>().material = YellowOff; // yellow
                 GreenLightObj.GetComponent<MeshRenderer>().material = GreenOn; // green
             }
-
-            WalkBox.active = false; //walkBox
-            StopBox.active = true; //stopBox 
         }
         else if(trafficManagerSimple.Instance.getStatus() == "slow") //cars slow
         {
@@ -59,8 +96,6 @@ public class lightboxControlSimple : MonoBehaviour
                 GreenLightObj.GetComponent<MeshRenderer>().material = GreenOff; // green
             }
 
-            WalkBox.active = false; //walkBox
-            StopBox.active = true; //stopBox 
         }
         else //assume stop
         {
@@ -70,8 +105,6 @@ public class lightboxControlSimple : MonoBehaviour
                 YellowLightObj.GetComponent<MeshRenderer>().material = YellowOff; // yellow
                 GreenLightObj.GetComponent<MeshRenderer>().material = GreenOff; // green
             }
-            WalkBox.active = true; //walkBox
-            StopBox.active = false; //stopBox 
         }
     }
 }

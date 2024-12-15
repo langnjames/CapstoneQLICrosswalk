@@ -19,10 +19,26 @@ public class lightboxControl : MonoBehaviour
     public Material GreenOn;
     public Material GreenOff;
 
-    [Header("The Walk Box Objects")]
-    public bool UseWalkboxOnly = false;
-    public GameObject WalkBox;
-    public GameObject StopBox;
+    //[Header("The Walk Box Objects")]
+    //public bool UseWalkboxOnly = false;
+    //public GameObject WalkBox;
+    //public GameObject StopBox;
+
+    private TrafficManager trafficManager;
+
+    [Header("The Traffic Light Direction")]
+    public direction stoplightDirection;
+
+    public enum direction
+    {
+        EW,
+        NS
+    }
+
+    //String for comparing states
+    private string lightDirection;
+
+    
 
     // The object to look at for instructions
     //private trafficManagerSimple TrafficManager;
@@ -31,46 +47,69 @@ public class lightboxControl : MonoBehaviour
     void Start()
     {
         // Get the traffic manager object's component
-        //TrafficManager = GameObject.FindWithTag("TrafficManager").GetComponent<trafficManagerSimple>(); 
+        trafficManager = TrafficManager.Instance;
+
+        lightDirection = stoplightDirection.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (trafficManagerSimple.Instance.getStatus() == "go") //cars go
+        string activeDirection = trafficManager.activeDirection.ToString();
+        
+
+        //Debug.Log(activeDirection + " " + stoplightDirection);
+
+        if (activeDirection == lightDirection)
         {
-            if (!UseWalkboxOnly)
+            if (trafficManager.GetStatus() == "go") //cars go
             {
                 RedLightObj.GetComponent<MeshRenderer>().material = RedOff; // red
                 YellowLightObj.GetComponent<MeshRenderer>().material = YellowOff; // yellow
                 GreenLightObj.GetComponent<MeshRenderer>().material = GreenOn; // green
             }
-
-            WalkBox.active = false; //walkBox
-            StopBox.active = true; //stopBox 
-        }
-        else if (trafficManagerSimple.Instance.getStatus() == "slow") //cars slow
-        {
-            if (!UseWalkboxOnly)
+            else if (trafficManager.GetStatus() == "slow") //cars slow
             {
                 RedLightObj.GetComponent<MeshRenderer>().material = RedOff; // red
                 YellowLightObj.GetComponent<MeshRenderer>().material = YellowOn; // yellow
                 GreenLightObj.GetComponent<MeshRenderer>().material = GreenOff; // green
             }
-
-            WalkBox.active = false; //walkBox
-            StopBox.active = true; //stopBox 
         }
-        else //assume stop
+        else
         {
-            if (!UseWalkboxOnly)
-            {
                 RedLightObj.GetComponent<MeshRenderer>().material = RedOn; // red
                 YellowLightObj.GetComponent<MeshRenderer>().material = YellowOff; // yellow
-                GreenLightObj.GetComponent<MeshRenderer>().material = GreenOff; // green
-            }
-            WalkBox.active = true; //walkBox
-            StopBox.active = false; //stopBox 
+                GreenLightObj.GetComponent<MeshRenderer>().material = GreenOff; // green   
         }
+
+        //if (trafficManagerSimple.Instance.getStatus() == "go") //cars go
+        //{
+
+        //        RedLightObj.GetComponent<MeshRenderer>().material = RedOff; // red
+        //        YellowLightObj.GetComponent<MeshRenderer>().material = YellowOff; // yellow
+        //        GreenLightObj.GetComponent<MeshRenderer>().material = GreenOn; // green
+
+
+        //    //WalkBox.active = false; //walkBox
+        //    //StopBox.active = true; //stopBox 
+        //}
+        //else if (trafficManagerSimple.Instance.getStatus() == "slow") //cars slow
+        //{
+
+        //        RedLightObj.GetComponent<MeshRenderer>().material = RedOff; // red
+        //        YellowLightObj.GetComponent<MeshRenderer>().material = YellowOn; // yellow
+        //        GreenLightObj.GetComponent<MeshRenderer>().material = GreenOff; // green
+
+
+
+        //}
+        //else //assume stop
+        //{
+
+        //        RedLightObj.GetComponent<MeshRenderer>().material = RedOn; // red
+        //        YellowLightObj.GetComponent<MeshRenderer>().material = YellowOff; // yellow
+        //        GreenLightObj.GetComponent<MeshRenderer>().material = GreenOff; // green
+
+        //}
     }
 }

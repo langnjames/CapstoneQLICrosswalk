@@ -52,6 +52,7 @@ public class crossboxControl : MonoBehaviour
         {
             if (intTimer <= 0)
             {
+                walkTimerText.SetText("");
                 walkTimerText.gameObject.SetActive(false);
                 walkSign.gameObject.SetActive(false);
             }

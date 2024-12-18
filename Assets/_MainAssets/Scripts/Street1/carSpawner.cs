@@ -24,7 +24,7 @@ public class carSpawner : MonoBehaviour
     private TrafficManager TrafficManager;
 
     /* DEFAULT VALUES */
-    private int defaultTrafficLevel = 3;
+    //private int defaultTrafficLevel = 0;
 
     void Start()
     {
@@ -40,10 +40,10 @@ public class carSpawner : MonoBehaviour
         if (TrafficManager.GetStatus() == "stop")
             isEnabled = false;
 
-        if (TrafficManager.GetStatus() == "go")
-        {
-            isEnabled = true;
-        }
+        //if (TrafficManager.GetStatus() == "go")
+        //{
+        //    isEnabled = true;
+        //}
 
         // Make a timer if there isn't one
         if (!timerCreated)
@@ -75,26 +75,28 @@ public class carSpawner : MonoBehaviour
     void setTimer()
     {
         int spawnRate;
-        if (MenuSettings.Instance != null)
-        {
-            spawnRate = MenuSettings.Instance.trafficLevel;
-        }
-        else
-        {
-            spawnRate = defaultTrafficLevel;
-        }
+        //if (MenuSettings.Instance != null)
+        //{
+            
+        //}
+        //else
+        //{
+        //    spawnRate = defaultTrafficLevel;
+        //}
+        spawnRate = MenuSettings.Instance.trafficLevel;
         Debug.Log("spawnRate:" + spawnRate);
+
 
         switch (spawnRate) 
         {
             case 0:
-                disableSpawner(); break;
+                disableSpawner(); isEnabled = false; break;
             case 1:
-                spawnInterval = 7f; break; // Larger time intervals for spawning
+                spawnInterval = 7f; isEnabled = true; break; // Larger time intervals for spawning
             case 2:
-                spawnInterval = 3f; break; // Normal time intervals for spawning
+                spawnInterval = 3f; isEnabled = true; break; // Normal time intervals for spawning
             case 3:
-                spawnInterval = .75f; break; // Short time intervals for spawning
+                spawnInterval = .75f; isEnabled = true; break; // Short time intervals for spawning
         }
     }
 

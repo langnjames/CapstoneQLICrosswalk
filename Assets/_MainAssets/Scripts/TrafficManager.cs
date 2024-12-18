@@ -58,6 +58,11 @@ public class TrafficManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         audioSource = GetComponent<AudioSource>();
+        
+    }
+
+    private void Start()
+    {
         CalculateLightCycles();
         theTimer = walkTimer;
     }
@@ -77,20 +82,7 @@ public class TrafficManager : MonoBehaviour
     {
        
 
-        //if (status == 0)
-        //{
-        //    //Countdown Timer
-        //    walkTimer -= Time.deltaTime;
-        //    if (walkTimer < 0f)
-        //    {
-        //        if (walkInProgress) // If the person started the timer manually this is turned to true. 
-        //        {
-        //            GameManager.Instance.ResetScene("You failed to cross the crosswalk in time"); // This can be anything but I decided to end the game when person didn't complete it
-        //        }
-        //        Invoke("ResetLights", 0f);
-        //    }
 
-        //}
 
         // THIS IS THE MAIN INTERSECTION LOOP WITHOUT PRESSING TRAFFIC BUTTON     
         
@@ -113,6 +105,20 @@ public class TrafficManager : MonoBehaviour
         //Debug.Log("TIMER: " + theTimer);
 
 
+        //if (status == 0)
+        //{
+        //    //Countdown Timer
+        //    walkTimer -= Time.deltaTime;
+        //    if (walkTimer < 0f)
+        //    {
+        //        if (walkInProgress) // If the person started the timer manually this is turned to true. 
+        //        {
+        //            GameManager.Instance.ResetScene("You failed to cross the crosswalk in time"); // This can be anything but I decided to end the game when person didn't complete it
+        //        }
+        //        Invoke("ResetLights", 0f);
+        //    }
+
+        //}
 
         // Prepare to walk
         if (walkTriggered)
@@ -127,36 +133,36 @@ public class TrafficManager : MonoBehaviour
             }
             else
             {
-                if (theTimer > 0f)
-                {
-                    // subtract the time elapsed
-                    theTimer -= Time.deltaTime;
-                    //Debug.Log("The timer: "+ theTimer);
-                }
-                // timer complete
-                else
-                {
-                    if (status == 2) // Change to slow state
-                    {
-                        status = 1;
-                        theTimer = intoStop; //start next timer
-                    }
-                    else if (status == 1) // Change to stop state
-                    {
-                        if (MenuSettings.Instance != null)
-                        {
-                            walkTimer = MenuSettings.Instance.walkTimer;
-                        }
-                        else
-                        {
-                            walkTimer = defaultWalkTimer;
-                        }
+                //if (theTimer > 0f)
+                //{
+                //    // subtract the time elapsed
+                //    //theTimer -= Time.deltaTime;
+                //    //Debug.Log("The timer: "+ theTimer);
+                //}
+                //// timer complete
+                //else
+                //{
+                //    if (status == 2) // Change to slow state
+                //    {
+                //        status = 1;
+                //        theTimer = intoStop; //start next timer
+                //    }
+                //    else if (status == 1) // Change to stop state
+                //    {
+                //        if (MenuSettings.Instance != null)
+                //        {
+                //            walkTimer = MenuSettings.Instance.walkTimer;
+                //        }
+                //        else
+                //        {
+                //            walkTimer = defaultWalkTimer;
+                //        }
 
-                        walkInProgress = true;
-                        status = 0;
-                    }
-                    // change to next
-                }
+                //        walkInProgress = true;
+                //        status = 0;
+                //    }
+                //    // change to next
+                //}
             }
 
         }
@@ -174,17 +180,18 @@ public class TrafficManager : MonoBehaviour
     public void CalculateLightCycles()
     {
         //Init
-        float walkTimer;
 
-        // Confirm wether Menu scene was initialized or not
-        if (MenuSettings.Instance == null)
-        {
-            walkTimer = defaultWalkTimer;
-        }
-        else
-        {
-            walkTimer = MenuSettings.Instance.walkTimer;
-        }
+
+        ////Confirm wether Menu scene was initialized or not
+        //if (MenuSettings.Instance != null)
+        //{
+        //    walkTimer = MenuSettings.Instance.walkTimer;
+        //}
+        //else
+        //{
+        //    walkTimer = defaultWalkTimer;
+        //}
+        walkTimer = MenuSettings.Instance.walkTimer;
 
         Debug.Log("walkTimer: " + walkTimer);
 

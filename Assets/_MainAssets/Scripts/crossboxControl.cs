@@ -19,7 +19,9 @@ public class crossboxControl : MonoBehaviour
     public GameObject stopSign;
     public TMP_Text walkTimerText;
 
-    TrafficManager  trafficController;
+    TrafficManager  trafficManager;
+
+    private string lightDirection;
 
     
 
@@ -27,15 +29,18 @@ public class crossboxControl : MonoBehaviour
    void Start()
     {
         // Gets refernce to traffic controller script for consistency throughout script.
-        trafficController = TrafficManager.Instance;
+        trafficManager = TrafficManager.Instance;
+
+        lightDirection = stoplightDirection.ToString();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        float walktimer = trafficController.GetTimer();
+        string activeDirection = trafficManager.activeDirection.ToString();
+        
+        float walktimer = trafficManager.GetTimer();
 
         float timerVal = Mathf.Floor(walktimer);
 
@@ -43,25 +48,41 @@ public class crossboxControl : MonoBehaviour
 
         //Debug.Log("WALKTIMER: " + walktimer + "\nFLOOR: " + timerVal + "\nINT: " + intTimer);
 
-        if (intTimer <= 0)
+        if (activeDirection == lightDirection)
         {
-            walkTimerText.gameObject.SetActive(false);
-            walkSign.gameObject.SetActive(false);
-        }
-        else
-        {
-            walkTimerText.SetText(timerVal.ToString());
-            walkTimerText.gameObject.SetActive(true);
-            if (intTimer > 0 && intTimer <= 10)
+            if (intTimer <= 0)
             {
+                walkTimerText.gameObject.SetActive(false);
                 walkSign.gameObject.SetActive(false);
-                stopSign.gameObject.SetActive(true);
             }
             else
             {
-                walkSign.gameObject.SetActive(true);
+                walkTimerText.gameObject.SetActive(true);
+                if (intTimer > 0 && intTimer < 100)
+                {
+                    walkTimerText.SetText(timerVal.ToString());
+                }
+                
+                if (intTimer > 0 && intTimer <= 10)
+                {
+                    walkSign.gameObject.SetActive(false);
+                    stopSign.gameObject.SetActive(true);
+                }
+                else
+                {
+                    walkSign.gameObject.SetActive(true);
+                }
             }
         }
+        else
+        {
+            walkSign.gameObject.SetActive(false);
+            stopSign.gameObject.SetActive(true);
+        }
+
+       
+
+
     }
 
     

@@ -80,7 +80,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3848311249714444981, guid: c5f86dae5060b4640964549165ca7e74, type: 3}
       propertyPath: m_text
-      value: _
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3848311249714444981, guid: c5f86dae5060b4640964549165ca7e74, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -104,7 +104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5856302703338802638, guid: c5f86dae5060b4640964549165ca7e74, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5856302703338802638, guid: c5f86dae5060b4640964549165ca7e74, type: 3}
       propertyPath: m_LocalRotation.w

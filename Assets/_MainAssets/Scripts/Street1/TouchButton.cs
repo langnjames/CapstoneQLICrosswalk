@@ -33,13 +33,13 @@ public class TouchButton : XRBaseInteractable
         }
         if (gameObject.name == "crosswalk Button")
         {
-            trafficManagerSimple.Instance.TriggerWalk();
-            // Make a way to trigger walking across the street in the other scene
+            //trafficManagerSimple.Instance.TriggerWalk();
+            //// Make a way to trigger walking across the street in the other scene
             
             
-            if (TrafficController.Instance != null)
+            if (TrafficManager.Instance != null)
             {
-                TrafficController.Instance.TriggerWalk();
+                TrafficManager.Instance.TriggerWalk();
             }
         }
     }

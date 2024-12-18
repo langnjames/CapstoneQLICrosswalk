@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 88852860}
   - component: {fileID: 88852859}
   m_Layer: 0
-  m_Name: MainMenuLabel
+  m_Name: EndMenuLabel
   m_TagString: MenuItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 98603990}
   - component: {fileID: 98603989}
   m_Layer: 0
-  m_Name: MainMenuPanel
+  m_Name: EndMenuPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3454,7 +3454,7 @@ GameObject:
   - component: {fileID: 1703914786}
   - component: {fileID: 1703914790}
   m_Layer: 0
-  m_Name: MainMenuCanvas
+  m_Name: EndMenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

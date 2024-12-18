@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb7203931082734fb10f27c90b5f31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnabled: 1
+  isEnabled: 0
   spawnInterval: 2
   spawnInterval_Offset: 3
   theCar: {fileID: 2904231676184966937, guid: a79193af2e36f7347b44b5a15c4047fd, type: 3}

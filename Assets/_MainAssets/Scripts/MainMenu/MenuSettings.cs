@@ -38,7 +38,7 @@ public class MenuSettings : MonoBehaviour
     {
         if (time == "Unlimited")
         {
-            walkTimer = -1;
+            walkTimer = 10000;
         }
         else 
         {

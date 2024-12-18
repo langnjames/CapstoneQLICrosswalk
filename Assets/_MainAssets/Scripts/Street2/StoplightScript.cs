@@ -65,7 +65,7 @@ public class StoplightScript : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         // Gets all stoplights in the scene
         stoplights = GameObject.FindGameObjectsWithTag("STOPLIGHT");

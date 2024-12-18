@@ -51890,6 +51890,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 245359333}
     m_Modifications:
+    - target: {fileID: 745411528708128487, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
+      propertyPath: m_Name
+      value: walkLight
+      objectReference: {fileID: 0}
     - target: {fileID: 2722852521017427090, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.9
@@ -51929,6 +51933,10 @@ PrefabInstance:
     - target: {fileID: 2722852521017427090, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4436682428813424885, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
+      propertyPath: m_Name
+      value: stopLight
       objectReference: {fileID: 0}
     - target: {fileID: 4748766638061204250, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
       propertyPath: m_TagString
@@ -64618,6 +64626,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 245359333}
     m_Modifications:
+    - target: {fileID: 745411528708128487, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880730976442323866, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
+      propertyPath: m_TagString
+      value: CROSSWALK
+      objectReference: {fileID: 0}
     - target: {fileID: 2722852521017427090, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.5
@@ -64658,13 +64674,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4468972385193313358, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4748766638061204250, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
       propertyPath: m_TagString
       value: STOPLIGHT
       objectReference: {fileID: 0}
+    - target: {fileID: 5569754055629255186, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
+      propertyPath: m_TagString
+      value: CROSSWALK
+      objectReference: {fileID: 0}
     - target: {fileID: 5746414848586722093, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
       propertyPath: m_TagString
       value: STOPLIGHT
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704228994681233263, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6785137284028014155, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
       propertyPath: m_Name
@@ -64677,6 +64705,14 @@ PrefabInstance:
     - target: {fileID: 6841376560235160755, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
       propertyPath: m_TagString
       value: STOPLIGHT
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590524301980460486, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7692231999605283197, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8684509089011513535, guid: 1c779e670c0f3c74d8625ca8eb63d6da, type: 3}
       propertyPath: m_Materials.Array.data[1]

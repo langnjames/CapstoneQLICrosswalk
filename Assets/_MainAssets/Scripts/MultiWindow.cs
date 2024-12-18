@@ -12,5 +12,10 @@ public class MultiWindow : MonoBehaviour
         {
             Display.displays[i].Activate();
         }
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
+
+
 }

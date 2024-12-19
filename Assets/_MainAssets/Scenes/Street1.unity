@@ -9138,7 +9138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23555,6 +23555,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5878377477874343628, guid: e9fc4dfe7c08e7f49abad1a7d5e5ecb7, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7081734620114987559, guid: e9fc4dfe7c08e7f49abad1a7d5e5ecb7, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -29589,7 +29593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8565496586983010135, guid: 677297d975e199441b8c549755654e14, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4
+      value: 3.79
       objectReference: {fileID: 0}
     - target: {fileID: 8565496586983010135, guid: 677297d975e199441b8c549755654e14, type: 3}
       propertyPath: m_LocalRotation.w
@@ -30930,6 +30934,10 @@ PrefabInstance:
     - target: {fileID: 835067394227001340, guid: 677297d975e199441b8c549755654e14, type: 3}
       propertyPath: m_Name
       value: CarSpawner (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174298233951901750, guid: 677297d975e199441b8c549755654e14, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 3661659347037500631, guid: 677297d975e199441b8c549755654e14, type: 3}
       propertyPath: theCar
@@ -35725,6 +35733,14 @@ PrefabInstance:
     - target: {fileID: 835067394227001340, guid: 677297d975e199441b8c549755654e14, type: 3}
       propertyPath: m_Name
       value: CarSpawner (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174298233951901750, guid: 677297d975e199441b8c549755654e14, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174298233951901750, guid: 677297d975e199441b8c549755654e14, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3661659347037500631, guid: 677297d975e199441b8c549755654e14, type: 3}
       propertyPath: theCar
@@ -43392,7 +43408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8565496586983010135, guid: 677297d975e199441b8c549755654e14, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8
+      value: 8.55
       objectReference: {fileID: 0}
     - target: {fileID: 8565496586983010135, guid: 677297d975e199441b8c549755654e14, type: 3}
       propertyPath: m_LocalRotation.w

@@ -3967,6 +3967,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5878377477874343628, guid: e9fc4dfe7c08e7f49abad1a7d5e5ecb7, type: 3}
+      propertyPath: m_StepOffset
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7081734620114987559, guid: e9fc4dfe7c08e7f49abad1a7d5e5ecb7, type: 3}
       propertyPath: m_Enabled
       value: 0

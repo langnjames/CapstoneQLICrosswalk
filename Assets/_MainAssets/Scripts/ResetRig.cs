@@ -11,11 +11,23 @@ public class ResetRig : MonoBehaviour
 
     public void ResetRigPosition()
     {
-        // Move the rig so that the camera ends up at desiredCamPosition
+        // Get the current Y rotation of the camera and the desired Y rotation
+        float currentY = mainCamera.transform.eulerAngles.y;
+        float desiredY = desiredRigEulerAngles.y;
+
+        // Compute how much we need to rotate around Y to align with the desired Y angle
+        float yOffset = desiredY - currentY;
+
+        // Rotate the rig only around the Y-axis
+        xrRigTransform.Rotate(0f, yOffset, 0f, Space.World);
+
+        // Now adjust the rig position to place the camera at the desiredCamPosition
         Vector3 offset = desiredCamPosition - mainCamera.transform.position;
         xrRigTransform.position += offset;
+    }
 
-        // Reset rig rotation if needed
-        xrRigTransform.rotation = Quaternion.Euler(desiredRigEulerAngles);
+    public void Start()
+    {
+        ResetRigPosition();
     }
 }

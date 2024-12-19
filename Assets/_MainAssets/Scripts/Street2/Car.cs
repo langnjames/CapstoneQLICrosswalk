@@ -9,7 +9,8 @@ public class Car : MonoBehaviour
 {
     private float carMaxSpeed = 10f;
     private float carMinSpeed = 0f;
-    private float carSpeed = 10f;
+    public float carSpeed = 10f;
+    public bool carActive = true;
 
     [Header("Car Direction")]
     public Direction carDir;
@@ -41,8 +42,11 @@ public class Car : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Drive();
-        GoOnGreen();
+        if (carActive)
+        {
+            Drive();
+            GoOnGreen();
+        }
     }
 
     void Drive()
@@ -231,11 +235,13 @@ public class Car : MonoBehaviour
 
 
 
-        else if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Player")
         {
+            
             // Stops the player from getting hit
             // Currently the cars stop extremely fast
-            StopCar();
+            carSpeed = 0;
+            TrafficManager.Instance.StopCars();
             GameManager.Instance.ResetScene("You almost got hit by a car");
         }
     }

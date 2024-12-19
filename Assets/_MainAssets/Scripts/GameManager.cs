@@ -53,10 +53,15 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void EndScene()
+    {
+        SceneManager.LoadScene("EndScene");
+    }
+
     public void EndGame()
     {
         Debug.Log("Called game from gamemanager");
         Application.Quit();
-        SceneManager.LoadScene("EndScene");
+        
     }
 }

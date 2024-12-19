@@ -29,7 +29,7 @@ public class TouchButton : XRBaseInteractable
         if (gameObject.name == "End Button")
         {
             Debug.Log("Call end game");
-            GameManager.Instance.EndGame();
+            GameManager.Instance.EndScene();
         }
         if (gameObject.name == "crosswalk Button")
         {

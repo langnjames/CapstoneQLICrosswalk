@@ -31,6 +31,7 @@ public class TrafficManager : MonoBehaviour
     public float walkTimer = 0f;
     private float timeToWalk = 0f;
     private float defaultWalkTimer = 20f;
+    private float crossTimer = 0f;
 
     AudioSource audioSource;
 
@@ -130,39 +131,18 @@ public class TrafficManager : MonoBehaviour
                 //set the new timer value
                 theTimer = intoSlow;
                 timerCreated = true;
+                crossTimer = walkTimer + intoSlow;
             }
             else
             {
-                //if (theTimer > 0f)
-                //{
-                //    // subtract the time elapsed
-                //    //theTimer -= Time.deltaTime;
-                //    //Debug.Log("The timer: "+ theTimer);
-                //}
-                //// timer complete
-                //else
-                //{
-                //    if (status == 2) // Change to slow state
-                //    {
-                //        status = 1;
-                //        theTimer = intoStop; //start next timer
-                //    }
-                //    else if (status == 1) // Change to stop state
-                //    {
-                //        if (MenuSettings.Instance != null)
-                //        {
-                //            walkTimer = MenuSettings.Instance.walkTimer;
-                //        }
-                //        else
-                //        {
-                //            walkTimer = defaultWalkTimer;
-                //        }
-
-                //        walkInProgress = true;
-                //        status = 0;
-                //    }
-                //    // change to next
-                //}
+                crossTimer -= Time.deltaTime;
+                if (crossTimer <= 0f)
+                {
+                   
+                    GameManager.Instance.ResetScene("You failed to cross the crosswalk in time"); // This can be anything but I decided to end the game when person didn't complete it
+                    
+                    Invoke("ResetLights", 0f);
+                }
             }
 
         }
@@ -221,10 +201,24 @@ public class TrafficManager : MonoBehaviour
     public void TriggerWalk()
     {
         walkTriggered = true;
-        timerCreated = false;
 
         audioSource.PlayOneShot(buttonClickAudio);
         Debug.Log("Triggered Sign");
+    }
+
+    public void SetStatus(int status)
+    {
+        this.status = status;
+    }
+
+    public void StopCars()
+    {
+        GameObject[] cars = GameObject.FindGameObjectsWithTag("CAR");
+        foreach(GameObject car in cars)
+        {
+          car.GetComponent<Car>().carSpeed = 0;
+            car.GetComponent<Car>().carActive = false;
+        }
     }
 
     // Get the status of the light

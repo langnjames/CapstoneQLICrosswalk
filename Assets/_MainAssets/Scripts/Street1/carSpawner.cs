@@ -23,8 +23,9 @@ public class carSpawner : MonoBehaviour
     // The object to look at for instructions
     private TrafficManager TrafficManager;
 
-    /* DEFAULT VALUES */
-    //private int defaultTrafficLevel = 0;
+    //
+    private bool spawnAllowed = true;
+    private float waitTimer = 0f;
 
     void Start()
     {
@@ -36,37 +37,42 @@ public class carSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //stop spawning if the traffic is a stop sign
-        if (TrafficManager.GetStatus() == "stop")
-            isEnabled = false;
-
-        //if (TrafficManager.GetStatus() == "go")
-        //{
-        //    isEnabled = true;
-        //}
-
-        // Make a timer if there isn't one
-        if (!timerCreated)
-        {
-            // Generate number
-            theTimer = spawnInterval + Random.Range(0f, spawnInterval_Offset);
-            // Signal that the timer was made
-            timerCreated = true;
-        }
-        // IF ENABLED & the timer exists
-        else if (isEnabled && timerCreated)
-        {
-            // count down
-            if(theTimer > 0f)
+        if (spawnAllowed)
+        {    
+            waitTimer -= Time.deltaTime;
+            if (waitTimer < 0f)
             {
-                // subtract the time elapsed
-                theTimer -= Time.deltaTime;
+                SwapEnabled();
             }
-            // timer complete
-            else
+
+            if (waitTimer > 100f && TrafficManager.Instance.GetStatus() == "slow")
             {
-                timerEnded();
-                timerCreated = false;
+                spawnAllowed = false;
+            }
+
+
+                // Make a timer if there isn't one
+            if (!timerCreated)
+            {
+                // Generate number
+                theTimer = spawnInterval + Random.Range(0f, spawnInterval_Offset);
+                // Signal that the timer was made
+                timerCreated = true;
+            }
+            else if (isEnabled && timerCreated)
+            {
+            // count down
+                if (theTimer > 0f)
+                {
+                    // subtract the time elapsed
+                    theTimer -= Time.deltaTime;
+                }
+                // timer complete
+                else
+                {
+                    timerEnded();
+                    timerCreated = false;
+                }
             }
         }
     }
@@ -90,14 +96,20 @@ public class carSpawner : MonoBehaviour
         switch (spawnRate) 
         {
             case 0:
-                disableSpawner(); isEnabled = false; break;
+                disableSpawner(); spawnAllowed = false; break;
             case 1:
-                spawnInterval = 7f; isEnabled = true; break; // Larger time intervals for spawning
+                spawnInterval = 7f; spawnAllowed = true; break; // Larger time intervals for spawning
             case 2:
-                spawnInterval = 3f; isEnabled = true; break; // Normal time intervals for spawning
+                spawnInterval = 3f; spawnAllowed = true; break; // Normal time intervals for spawning
             case 3:
-                spawnInterval = .75f; isEnabled = true; break; // Short time intervals for spawning
+                spawnInterval = .75f; spawnAllowed = true; break; // Short time intervals for spawning
         }
+    }
+
+    public void SwapEnabled()
+    {
+        isEnabled = !isEnabled;
+        waitTimer = TrafficManager.Instance.walkTimer;
     }
 
     void timerEnded()

@@ -84,7 +84,7 @@ public class carSpawner : MonoBehaviour
         //    spawnRate = defaultTrafficLevel;
         //}
         spawnRate = MenuSettings.Instance.trafficLevel;
-        Debug.Log("spawnRate:" + spawnRate);
+        //Debug.Log("spawnRate:" + spawnRate);
 
 
         switch (spawnRate) 

@@ -44,9 +44,9 @@ public class MenuSettings : MonoBehaviour
         {
             string[] parts = time.Split(' ');
             float.TryParse(parts[0], out walkTimer);
-            Debug.Log("walk timer supposed: " + walkTimer);
+            //Debug.Log("walk timer supposed: " + walkTimer);
         }
-        Debug.Log("Time set to: " + walkTimer);
+        //Debug.Log("Time set to: " + walkTimer);
     }
 
     public void SetTraffic(string traffic)
@@ -62,12 +62,12 @@ public class MenuSettings : MonoBehaviour
             case "High":
                 trafficLevel = 3; break;
         }
-        Debug.Log("traffic level set to: " + trafficLevel);
+        //Debug.Log("traffic level set to: " + trafficLevel);
     }
 
     public void SetLevel(string level)
     {
         levelSelect = level;
-        Debug.Log("level set to: " + levelSelect);
+        //Debug.Log("level set to: " + levelSelect);
     }
 }

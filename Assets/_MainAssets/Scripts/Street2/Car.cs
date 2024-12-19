@@ -221,7 +221,7 @@ public class Car : MonoBehaviour
         // If touching the STOP spot during a stop sign
         else if (collider.gameObject.tag == "StopSpot")
         {
-            Debug.Log("CAR: " + carDirection + "\tACTIVE: " + activeDirection + "\t STOP? : " + StopForRed().ToString());
+            //Debug.Log("CAR: " + carDirection + "\tACTIVE: " + activeDirection + "\t STOP? : " + StopForRed().ToString());
 
             if (StopForRed())
             {

@@ -120,7 +120,7 @@ public class trafficManagerSimple : MonoBehaviour
 
     public void ResetLights()
     {
-        Debug.Log("Invoked Reset lights");
+        //Debug.Log("Invoked Reset lights");
         status = 2;
         walkTriggered = false;
         timerCreated= false;
@@ -132,9 +132,7 @@ public class trafficManagerSimple : MonoBehaviour
     {
         walkTriggered = true;
         timerCreated = false;
-        
-        audioSource.PlayOneShot(buttonClickAudio);
-        Debug.Log("Triggered Sign");
+        //Debug.Log("Triggered Sign");
     }
 
     // Get the status of the light

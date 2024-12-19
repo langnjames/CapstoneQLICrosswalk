@@ -20,8 +20,6 @@ public class TrafficManager : MonoBehaviour
     // If the walk sign was triggered
     public bool walkTriggered = false;
 
-    public AudioClip buttonClickAudio;
-
     public bool walkInProgress = false;
 
     // if a timer was made yet
@@ -33,7 +31,7 @@ public class TrafficManager : MonoBehaviour
     private float defaultWalkTimer = 20f;
     private float crossTimer = 0f;
 
-    AudioSource audioSource;
+    
 
     private float greenDuration;
     private float yellowDuration = 3f;
@@ -58,7 +56,7 @@ public class TrafficManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        audioSource = GetComponent<AudioSource>();
+        
         
     }
 
@@ -150,7 +148,7 @@ public class TrafficManager : MonoBehaviour
 
     public void ResetLights()
     {
-        Debug.Log("Invoked Reset lights");
+        //Debug.Log("Invoked Reset lights");
         status = 2;
         walkTriggered = false;
         timerCreated = false;
@@ -173,13 +171,13 @@ public class TrafficManager : MonoBehaviour
         //}
         walkTimer = MenuSettings.Instance.walkTimer;
 
-        Debug.Log("walkTimer: " + walkTimer);
+        //Debug.Log("walkTimer: " + walkTimer);
 
         greenDuration = walkTimer - yellowDuration;
         redDuration = greenDuration;
         lightSwapDuration = greenDuration + yellowDuration;
 
-        Debug.Log("GREEN" + greenDuration + "\nRED: " + redDuration + "SWAP: "+lightSwapDuration);
+        //Debug.Log("GREEN" + greenDuration + "\nRED: " + redDuration + "SWAP: "+lightSwapDuration);
 
 
     }
@@ -201,9 +199,7 @@ public class TrafficManager : MonoBehaviour
     public void TriggerWalk()
     {
         walkTriggered = true;
-
-        audioSource.PlayOneShot(buttonClickAudio);
-        Debug.Log("Triggered Sign");
+        //Debug.Log("Triggered Sign");
     }
 
     public void SetStatus(int status)

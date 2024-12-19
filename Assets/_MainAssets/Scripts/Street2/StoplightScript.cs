@@ -173,7 +173,7 @@ public class StoplightScript : MonoBehaviour
             walkTimer = MenuSettings.Instance.walkTimer;
         }
 
-        Debug.Log("walkTimer: " + walkTimer);
+        //Debug.Log("walkTimer: " + walkTimer);
         
         greenDuration = walkTimer - yellowDuration;
         redDuration = greenDuration;
@@ -213,7 +213,7 @@ public class StoplightScript : MonoBehaviour
             GameObject stopLight = sign.transform.Find("stopLight").gameObject;
             TMP_Text walkTimerText = sign.GetComponentInChildren<TMP_Text>();
 
-            Debug.Log("Value : " + walkTimerText.name);
+            //Debug.Log("Value : " + walkTimerText.name);
 
             if (currentActiveDirection == ActiveDirection.EW)
             {
@@ -300,7 +300,7 @@ public class StoplightScript : MonoBehaviour
         if (IsAngleWithinThreshold(yRotation, 0f, threshold) || IsAngleWithinThreshold(yRotation, 360f, threshold))
         {
             direction = "N";
-            Debug.Log("Light is facing North");
+            //Debug.Log("Light is facing North");
         }
         else if (IsAngleWithinThreshold(yRotation, 90f, threshold))
         {
@@ -319,7 +319,7 @@ public class StoplightScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Light is at an intermediate angle");
+            //Debug.Log("Light is at an intermediate angle");
         }
 
         return direction;

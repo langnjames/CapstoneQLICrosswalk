@@ -10,12 +10,14 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 // The TouchButton class inherits from XRBaseInteractable to handle VR/AR interactions
 public class TouchButton : XRBaseInteractable
 {
+    private AudioSource m_AudioSource;
+
     // Awake is called when the script instance is being loaded
     protected override void Awake()
     {
         // Call the base class's Awake method
         base.Awake();
-        
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     // This method is called when the hover interaction starts
@@ -25,18 +27,17 @@ public class TouchButton : XRBaseInteractable
         // Debug.Log("Hover Entered");
         // Call the base class's OnHoverEntered method
         base.OnHoverEntered(args);
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
+
+        m_AudioSource.Play();
         if (gameObject.name == "End Button")
         {
-            Debug.Log("Call end game");
+            //Debug.Log("Call end game");
             GameManager.Instance.EndScene();
         }
         if (gameObject.name == "crosswalk Button")
         {
-            //trafficManagerSimple.Instance.TriggerWalk();
-            //// Make a way to trigger walking across the street in the other scene
-            
-            
+            // Trigger a walk to start
             if (TrafficManager.Instance != null)
             {
                 TrafficManager.Instance.TriggerWalk();

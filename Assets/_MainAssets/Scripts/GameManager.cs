@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public void CurrentSceneReset()
     {
         string currentScene = SceneManager.GetActiveScene().name;
-        Debug.Log("Current Scene: " + currentScene);
+        //Debug.Log("Current Scene: " + currentScene);
         fadeCanvas.StartFadeOut();
         SceneManager.LoadScene(currentScene);
     }
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("Called game from gamemanager");
+        //Debug.Log("Called game from gamemanager");
         Application.Quit();
         
     }

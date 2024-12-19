@@ -21,7 +21,7 @@ public class PlayerCollision : MonoBehaviour
         if (collider.gameObject.tag == "CrosswalkSpot")
         {
             trafficManagerSimple.Instance.walkInProgress = true;
-            Debug.Log("Entered Crosswalk");
+            //Debug.Log("Entered Crosswalk");
         }
     }
 

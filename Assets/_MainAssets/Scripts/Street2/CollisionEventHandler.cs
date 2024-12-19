@@ -13,7 +13,7 @@ public class CollisionEventHandler : MonoBehaviour
         
         if (other.gameObject.name.Contains("car"))
         {
-            Debug.Log("Called this bc: " + other.gameObject.name);
+            //Debug.Log("Called this bc: " + other.gameObject.name);
             OnCollisionEnterEvent?.Invoke();
         }
         

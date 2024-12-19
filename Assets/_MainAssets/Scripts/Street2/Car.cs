@@ -129,55 +129,6 @@ public class Car : MonoBehaviour
     }
 
 
-
-
-
-    //public string DetermineOrientation(GameObject car)
-    //{
-    //    string direction = "NA";
-
-    //    // Get the Y rotation in degrees
-    //    float yRotation = car.transform.eulerAngles.y;
-
-    //    // Normalize the angle between 0 and 360 degrees
-    //    yRotation = yRotation % 360f;
-
-    //    // Define thresholds for each cardinal direction
-    //    const float threshold = 45f; // Adjust as needed
-
-    //    if (IsAngleWithinThreshold(yRotation, 0f, threshold) || IsAngleWithinThreshold(yRotation, 360f, threshold))
-    //    {
-    //        direction = "N";
-    //        //Debug.Log("Object is facing North: " + car.name);
-    //    }
-    //    else if (IsAngleWithinThreshold(yRotation, 90f, threshold))
-    //    {
-    //        direction = "E";
-    //        //Debug.Log("Object is facing East: " + car.name);
-    //    }
-    //    else if (IsAngleWithinThreshold(yRotation, 180f, threshold))
-    //    {
-    //        direction = "S";
-    //        //Debug.Log("Object is facing South: " + car.name);
-    //    }
-    //    else if (IsAngleWithinThreshold(yRotation, 270f, threshold))
-    //    {
-    //        direction = "W";
-    //        //Debug.Log("Object is facing West: " + car.name);
-    //    }
-    //    else
-    //    {
-    //        //Debug.Log("Object is at an intermediate angle");
-    //    }
-
-    //    return direction;
-    //}
-
-    //private bool IsAngleWithinThreshold(float angle, float targetAngle, float threshold)
-    //{
-    //    return Mathf.Abs(Mathf.DeltaAngle(angle, targetAngle)) <= threshold;
-    //}
-
     IEnumerator LerpCar(float min, float max, float duration)
     {
         float timeElapsed = 0;

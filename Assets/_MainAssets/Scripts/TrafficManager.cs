@@ -79,10 +79,7 @@ public class TrafficManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-
-
-
+     
         // THIS IS THE MAIN INTERSECTION LOOP WITHOUT PRESSING TRAFFIC BUTTON     
         
         theTimer -= Time.deltaTime; // decrease timer through update
@@ -103,21 +100,6 @@ public class TrafficManager : MonoBehaviour
         }
         //Debug.Log("TIMER: " + theTimer);
 
-
-        //if (status == 0)
-        //{
-        //    //Countdown Timer
-        //    walkTimer -= Time.deltaTime;
-        //    if (walkTimer < 0f)
-        //    {
-        //        if (walkInProgress) // If the person started the timer manually this is turned to true. 
-        //        {
-        //            GameManager.Instance.ResetScene("You failed to cross the crosswalk in time"); // This can be anything but I decided to end the game when person didn't complete it
-        //        }
-        //        Invoke("ResetLights", 0f);
-        //    }
-
-        //}
 
         // Prepare to walk
         if (walkTriggered)
@@ -157,18 +139,6 @@ public class TrafficManager : MonoBehaviour
 
     public void CalculateLightCycles()
     {
-        //Init
-
-
-        ////Confirm wether Menu scene was initialized or not
-        //if (MenuSettings.Instance != null)
-        //{
-        //    walkTimer = MenuSettings.Instance.walkTimer;
-        //}
-        //else
-        //{
-        //    walkTimer = defaultWalkTimer;
-        //}
         walkTimer = MenuSettings.Instance.walkTimer;
 
         //Debug.Log("walkTimer: " + walkTimer);

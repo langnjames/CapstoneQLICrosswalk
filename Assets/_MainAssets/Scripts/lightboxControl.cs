@@ -81,35 +81,5 @@ public class lightboxControl : MonoBehaviour
                 YellowLightObj.GetComponent<MeshRenderer>().material = YellowOff; // yellow
                 GreenLightObj.GetComponent<MeshRenderer>().material = GreenOff; // green   
         }
-
-        //if (trafficManagerSimple.Instance.getStatus() == "go") //cars go
-        //{
-
-        //        RedLightObj.GetComponent<MeshRenderer>().material = RedOff; // red
-        //        YellowLightObj.GetComponent<MeshRenderer>().material = YellowOff; // yellow
-        //        GreenLightObj.GetComponent<MeshRenderer>().material = GreenOn; // green
-
-
-        //    //WalkBox.active = false; //walkBox
-        //    //StopBox.active = true; //stopBox 
-        //}
-        //else if (trafficManagerSimple.Instance.getStatus() == "slow") //cars slow
-        //{
-
-        //        RedLightObj.GetComponent<MeshRenderer>().material = RedOff; // red
-        //        YellowLightObj.GetComponent<MeshRenderer>().material = YellowOn; // yellow
-        //        GreenLightObj.GetComponent<MeshRenderer>().material = GreenOff; // green
-
-
-
-        //}
-        //else //assume stop
-        //{
-
-        //        RedLightObj.GetComponent<MeshRenderer>().material = RedOn; // red
-        //        YellowLightObj.GetComponent<MeshRenderer>().material = YellowOff; // yellow
-        //        GreenLightObj.GetComponent<MeshRenderer>().material = GreenOff; // green
-
-        //}
     }
 }
